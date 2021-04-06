@@ -56,18 +56,18 @@ Website with information & tutorials [`r icon::fa("link")` `siobhonlegan.com/BIO
 
 **Workflow**
 
-1. [Wet lab](01_DNAextraction.html)
+1. [Wet lab](http://siobhonlegan.com/BIO514-microbiome/01_DNAextraction.html)
 
-2.[Microbiome bioinformatics](02_bioinformatics.html)
+2.[Microbiome bioinformatics](http://siobhonlegan.com/BIO514-microbiome/02_bioinformatics.html)
 
-  - [Set up](03_setup.html)      
-  - [Sequence processing](04_sequence_processing.html)
-  - [Data cleaning](05_datacleaning.html)
-  - [Data visualization](06_data_visualization.html)
+  - [Set up](http://siobhonlegan.com/BIO514-microbiome/03_setup.html)      
+  - [Sequence processing](http://siobhonlegan.com/BIO514-microbiome/04_sequence_processing.html)
+  - [Data cleaning](http://siobhonlegan.com/BIO514-microbiome/05_datacleaning.html)
+  - [Data visualization](http://siobhonlegan.com/BIO514-microbiome/06_data_visualization.html)
 
 ---
 
-class: murdoch-lg-richblack
+class: murdoch-red
 
 ## References `r icon::fa("bookmark",pull = "right")`
 
@@ -146,7 +146,7 @@ We will not be doing the sequence pre-processing steps today but if you did want
 Raw amplicon 16S sequence data from West et al. (2020) *Gut* 69, 1452-1459. doi: [10.1136/gutjnl-2019-319620](http://dx.doi.org/10.1136/gutjnl-2019-319620).
 Download raw data from NCBI Sequence Read Archive. Project number `PRJNA493625` from https://sra-explorer.info/.
 
-You will not be required to download this for today's tutorial but if you wanted you could use this data and follow the [sequence processing](04_sequence_processing.html) page.
+You will not be required to download this for today's tutorial but if you wanted you could use this data and follow the [sequence processing](http://siobhonlegan.com/BIO514-microbiome/04_sequence_processing.html) page.
 ]
 
 - **RData** (*REQUIRED*)
@@ -417,12 +417,12 @@ In this part of the workshop we will go through some different ways you can visu
 
 Working within RStudio environment is not limited to just running code locally on your machine. [RShiny](https://shiny.rstudio.com/) allows you to make custom apps and web interface programs..
 
-Further detail on cleaning data after processing sequences is covered [here](05_datacleaning.html)
+Further detail on cleaning data after processing sequences is covered [here](http://siobhonlegan.com/BIO514-microbiome/05_datacleaning.html)
 
 ---
 ## Links
 
-[Useful links for microbial genomics analysis](02_bioinformatics.html)
+[Useful links for microbial genomics analysis](http://siobhonlegan.com/BIO514-microbiome/02_bioinformatics.html)
 
 - [Happy Belly Bioinformatics](https://astrobiomike.github.io/misc/amplicon_and_metagen) - A useful website containing information, tutorials and links related to bioinformatics (written by a biologist turned bioinformatician!)
 - [mixOmics](http://mixomics.org/mixdiablo/) - Our mixOmics R package proposes a whole range of multivariate methods that we developed and validated on many biological studies to gain more insight into ‘omics biological studies. [Useful GitBook here](https://mixomicsteam.github.io/Bookdown/index.html)

@@ -25,10 +25,10 @@ navbar:
           href: 06_data_visualization.html
     - text: "Data"
       icon: fa-database
-      href: 03_setup.html
+      href: http://siobhonlegan.com/BIO514-microbiome/03_setup.html
     - text: "Slides"
       icon: far fa-file-alt
-      href: workshop_slides/skeleton.html
+      href: http://siobhonlegan.com/BIO514-microbiome/workshop_slides/skeleton.html
     - icon: fab fa-github
       href: https://github.com/siobhon-egan/BIO514-microbiome/
 output: distill::distill_article

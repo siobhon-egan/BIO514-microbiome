@@ -18,16 +18,16 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Workshops and tutorials on microbiome and genomics
 
-Week 1 - [Wet lab](01_DNAextraction.html)
+Week 1 - [Wet lab](http://siobhonlegan.com/BIO514-microbiome/01_DNAextraction.html)
 
-Week 2 - [Microbiome bioinformatics](02_bioinformatics.html)
+Week 2 - [Microbiome bioinformatics](http://siobhonlegan.com/BIO514-microbiome/02_bioinformatics.html)
 
-  - [Set up](03_setup.html)      
-  - [Sequence processing](04_sequence_processing.html)
-  - [Data cleaning](05_datacleaning.html)
-  - [Data visualization](06_data_visualization.html)
+  - [Set up](http://siobhonlegan.com/BIO514-microbiome/03_setup.html)      
+  - [Sequence processing](http://siobhonlegan.com/BIO514-microbiome/04_sequence_processing.html)
+  - [Data cleaning](http://siobhonlegan.com/BIO514-microbiome/05_datacleaning.html)
+  - [Data visualization](http://siobhonlegan.com/BIO514-microbiome/06_data_visualization.html)
 
-[SLIDES](workshop_slides/skeleton.html)
+[SLIDES](http://siobhonlegan.com/BIO514-microbiome/workshop_slides/skeleton.html)
 
 -----
 

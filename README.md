@@ -8,10 +8,10 @@ Last updated 24th March 2021
 
 Lessons
 
-1. Laboratory - [DNA extraction](01_DNAextraction)
-2. Workshop - [microbiome data analysis](02_bioinformatics)
+1. Laboratory - [DNA extraction](http://siobhonlegan.com/BIO514-microbiome/01_DNAextraction.html)
+2. Workshop - [microbiome data analysis](http://siobhonlegan.com/BIO514-microbiome/02_bioinformatics.html)
 
-[SLIDES](workshop_slides/skeleton.html)
+[SLIDES](http://siobhonlegan.com/BIO514-microbiome/workshop_slides/skeleton)
 ---
 
 ### Download this repository
