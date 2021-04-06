@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>BIO514</title>
+
+  <meta property="description" itemprop="description" content="Data visualization"/>
+
+
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="BIO514"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Data visualization"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="BIO514"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="BIO514"/>
+  <meta property="twitter:description" content="Data visualization"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["BIO514"]},{"type":"character","attributes":{},"value":["Data visualization\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+
+  <script type="application/javascript">
+
+    window.headroom_prevent_pin = false;
+
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+
+  <style type="text/css">
+
+  /* Theme (user-documented overrideables for nav appearance) */
+
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .distill-site-nav a:hover {
+    color: white;
+  }
+
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+
+  .distill-site-header {
+
+  }
+
+  .distill-site-footer {
+
+  }
+
+
+  /* Site Header */
+
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+
+
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .distill-site-header .logo {
+    padding: 0;
+  }
+
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+
+
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+
+
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-dropdown-active {
+    display: block;
+  }
+
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  /* Site Footer */
+
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Headroom */
+
+  d-title {
+    padding-top: 6rem;
+  }
+
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+
+  .headroom--unpinned {
+    top: -100px;
+  }
+
+  .headroom--pinned {
+    top: 0;
+  }
+
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+
+  </style>
+
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+  <script type="application/javascript">
+
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+
+  function createFuseIndex() {
+
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+
+    createFuseIndex()
+      .then(function(fuse) {
+
+        // make search box visible
+        searchEl.classList.remove('hidden');
+
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  });
+
+  </script>
+
+  <style type="text/css">
+
+  .nav-search {
+    font-size: x-small;
+  }
+
+  /* Algolioa Autocomplete */
+
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  </style>
+
+
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="site_libs/header-attrs-2.7.2/header-attrs.js"></script>
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"BIO514","description":"Data visualization","authors":[]}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">BIO514</a>
+<a href="index.html">Home</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="01_DNAextraction.html">Laboratory</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Workshop
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="02_bioinformatics.html">Introduction</a>
+<a href="03_setup.html">Set up</a>
+<a href="04_sequence_processing.html">Sequence processing</a>
+<a href="05_datacleaning.html">Data cleaning</a>
+<a href="06_data_visualization.html">Data visualization</a>
+</div>
+</div>
+<a href="03_setup.html" aria-label="Data">
+<i class="fa fa-database" aria-hidden="true"></i>
+</a>
+<a href="workshop_slides/skeleton.html" aria-label="Slides">
+<i class="far fa-file-alt" aria-hidden="true"></i>
+</a>
+<a href="https://github.com/siobhon-egan/BIO514/">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>BIO514</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Data visualization</p></p>
+</div>
+
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#load-libraries">Load libraries</a></li>
+<li><a href="#data-import">Data import</a></li>
+<li><a href="#inspect-data">Inspect data</a></li>
+<li><a href="#rarefaction">Rarefaction</a></li>
+<li><a href="#alpha-diversity">Alpha diversity</a></li>
+<li><a href="#distribution-plot">Distribution plot</a></li>
+<li><a href="#taxa-summary">Taxa summary</a></li>
+<li><a href="#top-taxa">Top taxa</a></li>
+<li><a href="#heatmap">Heatmap</a></li>
+<li><a href="#betadiversity">Betadiversity</a>
+<ul>
+<li><a href="#ordination">Ordination</a></li>
+<li><a href="#statistical-analysis">Statistical analysis</a></li>
+</ul></li>
+<li><a href="#hierarchical-cluster-analysis">Hierarchical cluster analysis</a></li>
+</ul>
+</nav>
+</div>
+<h2 id="load-libraries">Load libraries</h2>
+<p>Load and/or install required R packages.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>echo <span class='op'>=</span> <span class='cn'>TRUE</span>, warning <span class='op'>=</span> <span class='cn'>FALSE</span>, fig.align <span class='op'>=</span> <span class='st'>"center"</span><span class='op'>)</span>
+
+<span class='va'>pkgs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"tidyverse"</span>, <span class='st'>"santaR"</span>, <span class='st'>"phyloseq"</span>, <span class='st'>"ggpubr"</span>, <span class='st'>"ggplot2"</span>,
+          <span class='st'>"vegan"</span>, <span class='st'>"DESeq2"</span>, <span class='st'>"mixOmics"</span>, <span class='st'>"Hmisc"</span>, <span class='st'>"igraph"</span>, <span class='st'>"ppcor"</span>, 
+          <span class='st'>"reshape2"</span>, <span class='st'>"plotly"</span>, <span class='st'>"microbiomeutilities"</span>, <span class='st'>"ampvis2"</span>,
+          <span class='st'>"MicrobiotaProcess"</span>, <span class='st'>"microbiome"</span>, <span class='st'>"DirichletMultinomial"</span>,
+          <span class='st'>"magrittr"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>pkgs</span>, <span class='va'>require</span>, character.only <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'>theme_set</span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="data-import">Data import</h2>
+<p>This data is <code>phyloseq</code> format. This is the most commonly used data format for amplicon data in RStudio. As we have skipped over getting our data into R, here are some help links on this matter <a href="https://joey711.github.io/phyloseq/import-data.html">phyloseq</a> and customised <a href="https://cryptick-lab.github.io/NGS-Analysis/_site/QIIME2-DataImport.html">tutorial here</a>.</p>
+<p>Essentially we need at least three bits of data that talk to each other:</p>
+<ul>
+<li><strong>Count data</strong> - sometimes called OTU data. Usually OTUs/ASVs are rows and each column is sample. Data is numerical where value = number of sequences. Note that different outputs may have data transformed (i.e rows are the samples), make sure you check what format data is required in.</li>
+<li><strong>Taxonomy data</strong> - this contains the taxonomy of the count (or OTU) data. Each row is a unique OTU/ASV and column reflect <strong>Kingdom, Phylum, Class, Order, Family, Genus, Species</strong>.</li>
+<li><strong>Sample data</strong> - sometimes referred to as metadata. This includes all the additional information on samples e.g. sample variables such as collection time, patient age, disease status etc.</li>
+</ul>
+<p><em>Optional data</em></p>
+<ul>
+<li><strong>Phylogenetic tree</strong> - usually as newick format but other options available. For some beta-diversity analysis this is required</li>
+<li><strong>Ref sequences</strong> - sequences of OTUs or ASV (as <code>.fasta</code> format)</li>
+</ul>
+<p>Load data in RData - downloaded from <a href="https://github.com/ka-west/PBS_manuscript" class="uri">https://github.com/ka-west/PBS_manuscript</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>"data/PBS_data.Rdata"</span><span class='op'>)</span>
+<span class='co'># Quick glance at phyloseq object</span>
+<span class='va'>ps_M</span>
+</code></pre>
+</div>
+<pre><code>phyloseq-class experiment-level object
+otu_table()   OTU Table:         [ 4318 taxa and 68 samples ]
+sample_data() Sample Data:       [ 68 samples by 15 sample variables ]
+tax_table()   Taxonomy Table:    [ 4318 taxa by 6 taxonomic ranks ]
+phy_tree()    Phylogenetic Tree: [ 4318 tips and 4316 internal nodes ]</code></pre>
+</div>
+<h2 id="inspect-data">Inspect data</h2>
+<p><strong>Number of reads</strong></p>
+<p>This will give you an overview of the number of reads per sample and per OTU. Important to know the ‘depth’ of sequencing. Generally for amplicon 16S microbiome you want many 10’s of thousands of (good reads) per sample. The more complex the sample the more reads you need (but there is a very large variation in studies and not set rule).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>readsumsdf</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>nreads <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'>taxa_sums</span><span class='op'>(</span><span class='va'>ps_M</span><span class='op'>)</span>, <span class='cn'>TRUE</span><span class='op'>)</span>, sorted <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'>ntaxa</span><span class='op'>(</span><span class='va'>ps_M</span><span class='op'>)</span>, 
+    type <span class='op'>=</span> <span class='st'>"OTUs"</span><span class='op'>)</span>
+<span class='va'>readsumsdf</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>readsumsdf</span>, <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>nreads <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'>sample_sums</span><span class='op'>(</span><span class='va'>ps_M</span><span class='op'>)</span>, 
+    <span class='cn'>TRUE</span><span class='op'>)</span>, sorted <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'>nsamples</span><span class='op'>(</span><span class='va'>ps_M</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"Samples"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>title</span> <span class='op'>=</span> <span class='st'>"Total number of reads"</span>
+<span class='va'>nreads</span> <span class='op'>=</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>readsumsdf</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sorted</span>, y <span class='op'>=</span> <span class='va'>nreads</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span>
+<span class='va'>nreads</span> <span class='op'>=</span> <span class='va'>nreads</span> <span class='op'>+</span> <span class='fu'>ggtitle</span><span class='op'>(</span><span class='va'>title</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>scale_y_log10</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>type</span>, <span class='fl'>1</span>, scales <span class='op'>=</span> <span class='st'>"free"</span><span class='op'>)</span>
+<span class='va'>nreads</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-2-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p><strong>Read density plot</strong><br />
+Useful for QC purposes. This will show you the distirbution of sequencing depth among samples. Ideally you want an even number of reads per sample. If you see lots of variation then library preparation needs to be optimised and you will need to perform more thorough data cleaning (i.e. rarefy reads - but this is not ideal.<br />
+Ref: McMurdie PJ, Holmes S. Waste not, want not: why rarefying microbiome data is inadmissible. PLoS Comput Biol. 2014 3;10(4):e1003531. doi: <a href="10.1371/journal.pcbi.1003531">https://doi.org/10.1371/journal.pcbi.1003531</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>read_distrib</span> <span class='op'>&lt;-</span> <span class='fu'>plot_read_distribution</span><span class='op'>(</span><span class='va'>ps_M</span>, groups <span class='op'>=</span> <span class='st'>"Group"</span>, 
+                                       plot.type <span class='op'>=</span> <span class='st'>"density"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Done plotting&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>read_distrib</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-3-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="rarefaction">Rarefaction</h2>
+<p>Rarefaction is a technique to assess species richness from the results of sampling - mainly used in ecology. This curve is a plot of the number of species as a function of the number of samples. Rarefaction curves generally grow rapidly at first, as the most common species are found, but the curves plateau as only the rarest species remain to be sampled. We use this plot to see if we have reached an adequate level of sequencing depth for our samples.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># set seed</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='co'># set subsample</span>
+<span class='va'>subsamples</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>5000</span>, <span class='fl'>10000</span>, <span class='fl'>20000</span>, <span class='fl'>30000</span><span class='op'>)</span>
+
+<span class='va'>rarecurve</span> <span class='op'>&lt;-</span> <span class='fu'>plot_alpha_rcurve</span><span class='op'>(</span><span class='va'>ps_M</span>, index<span class='op'>=</span><span class='st'>"observed"</span>, 
+                       subsamples <span class='op'>=</span> <span class='va'>subsamples</span>,
+                       lower.conf <span class='op'>=</span> <span class='fl'>0.025</span>, 
+                       upper.conf <span class='op'>=</span> <span class='fl'>0.975</span>,
+                       group<span class='op'>=</span><span class='st'>"Group_label"</span>,
+                       label.color <span class='op'>=</span> <span class='st'>"brown3"</span>,
+                       label.size <span class='op'>=</span> <span class='fl'>3</span>,
+                       label.min <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> 
+<span class='co'># change color of line </span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+
+<span class='va'>rarecurve</span> <span class='op'>&lt;-</span> <span class='va'>rarecurve</span> <span class='op'>+</span> <span class='fu'>scale_color_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>mycols</span><span class='op'>)</span>
+<span class='va'>rarecurve</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-4-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="alpha-diversity">Alpha diversity</h2>
+<p>Alpha diversity is the mean species diversity within a sample. There are different measurements/indexes. The most simplest being how many ASV/OTUs in each sample. Other common used measurements - chao1, shannon, inverse simpson,</p>
+<p>Make using alpha diversity plots with statistical values using <a href="https://microsud.github.io/microbiomeutilities/articles/microbiomeutilities.html#plot-alpha-diversities">microbiomeutilities</a>.</p>
+<p>Produce alpha diversity plots using 4 measures - observed (i.e. number of OTUs), chao1, shannon and inverse simpson.<br />
+Statistical analysis with wilcoxon pair-wise test</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>obs_alpha_plot</span> <span class='op'>&lt;-</span> <span class='fu'>plot_diversity_stats</span><span class='op'>(</span><span class='va'>ps_M</span>, group <span class='op'>=</span> <span class='st'>"Group_label"</span>, 
+                            index <span class='op'>=</span> <span class='st'>"observed"</span>,
+                            label.format<span class='op'>=</span><span class='st'>"p.format"</span>,
+                            group.colors <span class='op'>=</span> <span class='va'>mycols</span>,
+                            stats <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>chao1_alpha_plot</span> <span class='op'>&lt;-</span> <span class='fu'>plot_diversity_stats</span><span class='op'>(</span><span class='va'>ps_M</span>, group <span class='op'>=</span> <span class='st'>"Group_label"</span>, 
+                            index <span class='op'>=</span> <span class='st'>"chao1"</span>,
+                            label.format<span class='op'>=</span><span class='st'>"p.format"</span>,
+                            group.colors <span class='op'>=</span> <span class='va'>mycols</span>,
+                            stats <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>shan_alpha_plot</span> <span class='op'>&lt;-</span> <span class='fu'>plot_diversity_stats</span><span class='op'>(</span><span class='va'>ps_M</span>, group <span class='op'>=</span> <span class='st'>"Group_label"</span>, 
+                            index <span class='op'>=</span> <span class='st'>"diversity_shannon"</span>,
+                            label.format<span class='op'>=</span><span class='st'>"p.format"</span>,
+                            group.colors <span class='op'>=</span> <span class='va'>mycols</span>,
+                            stats <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>invsimp_alpha_plot</span> <span class='op'>&lt;-</span> <span class='fu'>plot_diversity_stats</span><span class='op'>(</span><span class='va'>ps_M</span>, group <span class='op'>=</span> <span class='st'>"Group_label"</span>, 
+                            index <span class='op'>=</span> <span class='st'>"diversity_inverse_simpson"</span>,
+                            label.format<span class='op'>=</span><span class='st'>"p.format"</span>,
+                            group.colors <span class='op'>=</span> <span class='va'>mycols</span>,
+                            stats <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>alphadiv_wp</span> <span class='op'>&lt;-</span> <span class='fu'>ggarrange</span><span class='op'>(</span><span class='va'>obs_alpha_plot</span>, <span class='va'>chao1_alpha_plot</span>, 
+                         <span class='va'>shan_alpha_plot</span>, <span class='va'>invsimp_alpha_plot</span>,
+                         ncol <span class='op'>=</span> <span class='fl'>2</span>, nrow <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>alphadiv_wp</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-5-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p>Save your figures directly from R for bonus points on quality data reproducibility! This line with save your combined alpha diversity plots into a direcoty called <em>plots/</em></p>
+<pre><code>ggsave(&quot;alphadiv_withpvalues.pdf&quot;, plot = alphadiv_wp, path = &quot;plots&quot;, width = 30, height = 30, units = &quot;cm&quot;)</code></pre>
+<h2 id="distribution-plot">Distribution plot</h2>
+<p>This plot is good to give you an idea of the how taxa are distribution within the data. It will give you an idea about general trends in the data and help guide how further analysis.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Bariatric Surgery</span>
+<span class='va'>NBS_ps</span> <span class='op'>&lt;-</span> <span class='fu'>subset_samples</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>Group_label</span><span class='op'>==</span><span class='st'>"NBS"</span><span class='op'>)</span>
+<span class='va'>NBS_ps_dis</span> <span class='op'>&lt;-</span> <span class='fu'>taxa_distribution</span><span class='op'>(</span><span class='va'>NBS_ps</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>theme_biome_utils</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"No Bariatric Surgery"</span><span class='op'>)</span>
+
+<span class='co'># Malabsorptive</span>
+<span class='va'>MAL_ps</span> <span class='op'>&lt;-</span> <span class='fu'>subset_samples</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>Group_label</span><span class='op'>==</span><span class='st'>"MAL"</span><span class='op'>)</span>
+<span class='va'>MAL_ps_dis</span> <span class='op'>&lt;-</span> <span class='fu'>taxa_distribution</span><span class='op'>(</span><span class='va'>MAL_ps</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>theme_biome_utils</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Malabsorptive"</span><span class='op'>)</span>
+
+<span class='co'># Merge the plots together for publication ready figures!</span>
+<span class='va'>distrib</span> <span class='op'>=</span> <span class='fu'>ggarrange</span><span class='op'>(</span><span class='va'>NBS_ps_dis</span>, <span class='va'>MAL_ps_dis</span>, ncol <span class='op'>=</span> <span class='fl'>1</span>, nrow <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>distrib</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-6-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="taxa-summary">Taxa summary</h2>
+<p>Create a bar plot of phyla - showing difference in two groups <code>No bariatric surgery</code> vs <code>Malabsorptive</code>. Note that depending on your study present a barplot might a quick way to see patterns in your data generally they are not used to represent the community composition in your final figures.</p>
+<p>Use these for visualizing at higher taxonomic levels (mostly phylum level). Remember also that you need to be careful when looking at relative microbiome abundance!</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>grp_abund</span> <span class='op'>&lt;-</span> <span class='fu'>get_group_abundances</span><span class='op'>(</span><span class='va'>ps_M</span>, 
+                                  level <span class='op'>=</span> <span class='st'>"Phylum"</span>, 
+                                  group<span class='op'>=</span><span class='st'>"Group"</span>,
+                                  transform <span class='op'>=</span> <span class='st'>"compositional"</span><span class='op'>)</span>
+
+
+
+<span class='va'>mean.plot.phy</span> <span class='op'>&lt;-</span> <span class='va'>grp_abund</span> <span class='op'>%&gt;%</span> <span class='co'># input data</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>OTUID</span>, <span class='va'>mean_abundance</span><span class='op'>)</span>, <span class='co'># reroder based on mean abundance</span>
+             y<span class='op'>=</span> <span class='va'>mean_abundance</span>,
+             fill<span class='op'>=</span><span class='va'>Group</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># x and y axis</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+           position<span class='op'>=</span><span class='fu'>position_dodge</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span><span class='st'>"Group"</span>, values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># manually specify colors</span>
+  <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># add a widely used ggplot2 theme</span>
+  <span class='fu'>ylab</span><span class='op'>(</span><span class='st'>"Mean Relative Abundance"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># label y axis</span>
+  <span class='fu'>xlab</span><span class='op'>(</span><span class='st'>"Phylum"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># label x axis</span>
+  <span class='fu'>coord_flip</span><span class='op'>(</span><span class='op'>)</span> <span class='co'># rotate plot </span>
+<span class='va'>mean.plot.phy</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-7-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p>Create a bar plot of order - showing difference in two groups <code>No bariatric surgery</code> vs <code>Malabsorptive</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>grp_abund</span> <span class='op'>&lt;-</span> <span class='fu'>get_group_abundances</span><span class='op'>(</span><span class='va'>ps_M</span>, 
+                                  level <span class='op'>=</span> <span class='st'>"Order"</span>, 
+                                  group<span class='op'>=</span><span class='st'>"Group"</span>,
+                                  transform <span class='op'>=</span> <span class='st'>"compositional"</span><span class='op'>)</span>
+
+
+
+<span class='va'>mean.plot.ord</span> <span class='op'>&lt;-</span> <span class='va'>grp_abund</span> <span class='op'>%&gt;%</span> <span class='co'># input data</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>OTUID</span>, <span class='va'>mean_abundance</span><span class='op'>)</span>, <span class='co'># reroder based on mean abundance</span>
+             y<span class='op'>=</span> <span class='va'>mean_abundance</span>,
+             fill<span class='op'>=</span><span class='va'>Group</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># x and y axis </span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+           position<span class='op'>=</span><span class='fu'>position_dodge</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span><span class='st'>"Group"</span>, values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># manually specify colors</span>
+  <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># add a widely used ggplot2 theme</span>
+  <span class='fu'>ylab</span><span class='op'>(</span><span class='st'>"Mean Relative Abundance"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># label y axis</span>
+  <span class='fu'>xlab</span><span class='op'>(</span><span class='st'>"Order"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># label x axis</span>
+  <span class='fu'>coord_flip</span><span class='op'>(</span><span class='op'>)</span> <span class='co'># rotate plot </span>
+<span class='va'>mean.plot.ord</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-8-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p><strong>Composition barplot</strong></p>
+<p>To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregare taxa at family level).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Get relative abundance and remove low abundant taxa</span>
+<span class='va'>ps1.rel</span> <span class='op'>&lt;-</span> <span class='fu'>microbiome</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/microbiome/man/transform.html'>transform</a></span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"compositional"</span><span class='op'>)</span>
+<span class='va'>ps1.fam.rel</span> <span class='op'>&lt;-</span><span class='fu'>aggregate_rare</span><span class='op'>(</span><span class='va'>ps1.rel</span>, level <span class='op'>=</span> <span class='st'>"Family"</span>, detection <span class='op'>=</span> <span class='fl'>0.005</span>, prevalence <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+
+<span class='va'>comp_plot</span> <span class='op'>&lt;-</span> <span class='fu'>plot_composition</span><span class='op'>(</span><span class='va'>ps1.fam.rel</span>,
+                      average_by <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>guides</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='fu'>guide_legend</span><span class='op'>(</span>ncol <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Samples"</span>, 
+       y <span class='op'>=</span> <span class='st'>"Relative abundance"</span>,
+       title <span class='op'>=</span> <span class='st'>"Relative abundance data"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_brewer</span><span class='op'>(</span><span class='st'>"Family"</span>, palette <span class='op'>=</span> <span class='st'>"Paired"</span><span class='op'>)</span>
+<span class='va'>comp_plot</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-9-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="top-taxa">Top taxa</h2>
+<p>Now we’ll just take the top 5 family taxa. Lets plot the abundance between the two groups. Make some comments on the value of this type of analysis and how you might interpret the data (tell me also about the type of bacteria that were identified as well).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>top_tax</span> <span class='op'>&lt;-</span> <span class='fu'>plot_taxa_boxplot</span><span class='op'>(</span><span class='va'>ps_M</span>,
+                        taxonomic.level <span class='op'>=</span> <span class='st'>"Family"</span>,
+                        top.otu <span class='op'>=</span> <span class='fl'>6</span>, 
+                        group <span class='op'>=</span> <span class='st'>"Group_label"</span>,
+                        add.violin<span class='op'>=</span> <span class='cn'>TRUE</span>,
+                        group.colors <span class='op'>=</span> <span class='va'>mycols</span>,
+                        title <span class='op'>=</span> <span class='st'>"Top six family"</span>, 
+                        keep.other <span class='op'>=</span> <span class='cn'>FALSE</span>,
+                        dot.size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>top_tax</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-10-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="heatmap">Heatmap</h2>
+<p>Rather than a barplot heatmaps are much better at presenting the microbiome composition in samples. These are commonly used in publications!</p>
+<p>Create heatmap of core microbiome <a href="https://microbiome.github.io/tutorials/Core.html">tutorial</a></p>
+<p>Keep only taxa with count above zero and transform to compositional (relative abundance).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ps.prune</span> <span class='op'>&lt;-</span> <span class='fu'>prune_taxa</span><span class='op'>(</span><span class='fu'>taxa_sums</span><span class='op'>(</span><span class='va'>ps_M</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>0</span>, <span class='va'>ps_M</span><span class='op'>)</span>
+<span class='va'>pseq.rel</span> <span class='op'>&lt;-</span> <span class='fu'>microbiome</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/microbiome/man/transform.html'>transform</a></span><span class='op'>(</span><span class='va'>ps.prune</span>, <span class='st'>"compositional"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Aggregate data to genus level and make heat map of the most prevalent taxa.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>RColorBrewer</span><span class='op'>)</span>
+
+<span class='va'>ps.m3.rel.gen</span> <span class='op'>&lt;-</span> <span class='fu'>aggregate_taxa</span><span class='op'>(</span><span class='va'>pseq.rel</span>, <span class='st'>"Genus"</span><span class='op'>)</span>
+<span class='va'>prevalences</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>.05</span>, <span class='fl'>1</span>, <span class='fl'>.05</span><span class='op'>)</span>
+<span class='va'>detections</span> <span class='op'>&lt;-</span> <span class='fl'>10</span><span class='op'>^</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log10</a></span><span class='op'>(</span><span class='fl'>1e-4</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log10</a></span><span class='op'>(</span><span class='fl'>.2</span><span class='op'>)</span>, length <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+
+<span class='va'>core_heatmap</span> <span class='op'>&lt;-</span> <span class='fu'>plot_core</span><span class='op'>(</span><span class='va'>ps.m3.rel.gen</span>, 
+                plot.type <span class='op'>=</span> <span class='st'>"heatmap"</span>, 
+                colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='st'>"RdBu"</span><span class='op'>)</span><span class='op'>)</span>,
+                prevalences <span class='op'>=</span> <span class='va'>prevalences</span>, 
+                detections <span class='op'>=</span> <span class='va'>detections</span>, min.prevalence <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>xlab</span><span class='op'>(</span><span class='st'>"Detection Threshold (Relative Abundance (%))"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;0.01%&quot;               &quot;0.0232691816877636%&quot; &quot;0.0541454816418154%&quot;
+ [4] &quot;0.125992104989487%&quot;  &quot;0.293173318222417%&quot;  &quot;0.682190320772197%&quot; 
+ [7] &quot;1.5874010519682%&quot;    &quot;3.69375234895952%&quot;   &quot;8.59505945175427%&quot;  
+[10] &quot;20%&quot;                </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>core_heatmap</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-12-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p>Make a heat map of all samples - this can get a bit messy when you have a lot of samples but helpful to quickly see how different samples compare.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ps1.rel</span> <span class='op'>&lt;-</span><span class='fu'>aggregate_rare</span><span class='op'>(</span><span class='va'>ps_M</span>, level <span class='op'>=</span> <span class='st'>"Family"</span>, detection <span class='op'>=</span> <span class='fl'>10</span>, prevalence <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+
+<span class='va'>pseq.famlog</span> <span class='op'>&lt;-</span> <span class='fu'>microbiome</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/microbiome/man/transform.html'>transform</a></span><span class='op'>(</span><span class='va'>ps1.rel</span>, <span class='st'>"log10"</span><span class='op'>)</span>
+
+<span class='va'>p.famrel.heatmap</span> <span class='op'>&lt;-</span> <span class='fu'>plot_composition</span><span class='op'>(</span><span class='va'>pseq.famlog</span>, 
+                             sample.sort <span class='op'>=</span> <span class='cn'>NULL</span>, 
+                             otu.sort <span class='op'>=</span> <span class='cn'>NULL</span>, 
+                             x.label <span class='op'>=</span> <span class='st'>"Group_label"</span>, 
+                             plot.type <span class='op'>=</span> <span class='st'>"heatmap"</span>, 
+                             verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>To view interactively execute the following R code. <code>ggplotly(p.famrel.heatmap)</code></p>
+<h2 id="betadiversity">Betadiversity</h2>
+<p>Variation of microbial communities between samples. Beta diversity shows the different between microbial communities from different environments.</p>
+<p><strong>Distance measures </strong> Bray–Curtis dissimilarity - based on abundance or read count data - differences in microbial abundances between two samples (e.g., at species level) values are from 0 to 1 0 means both samples share the same species at exact the same abundances 1 means both samples have complete different species abundances</p>
+<p>Jaccard distance - based on presence or absence of species (does not include abundance information) - different in microbial composition between two samples 0 means both samples share exact the same species 1 means both samples have no species in common</p>
+<p>UniFrac - sequence distances (phylogenetic tree) - based on the fraction of branch length that is shared between two samples or unique to one or the other sample unweighted UniFrac: purely based on sequence distances (does not include abundance information) weighted UniFrac: branch lengths are weighted by relative abundances (includes both sequence and abundance information)</p>
+<ul>
+<li><a href="https://joey711.github.io/phyloseq/plot_ordination-examples.html">Phyloseq</a></li>
+<li><a href="http://deneflab.github.io/MicrobeMiseq/demos/mothur_2_phyloseq.html#constrained_ordinations">MicrobiomeMiseq tutorial by Michelle Berr</a></li>
+<li><a href="http://albertsenlab.org/ampvis2-ordination/">ampvis2</a></li>
+</ul>
+<h3 id="ordination">Ordination</h3>
+<p>Ordination methods are used to highlight differences between samples based on their microbial community composition - also referred to as distance- or (dis)similarity measures.</p>
+<p>These techniques reduce the dimensionality of microbiome data sets so that a summary of the beta diversity relationships can be visualized in 2D or 3D plots. The principal coordinates (axis) each explains a certain fraction of the variability (formally called inertia). This creates a visual representation of the microbial community compositional differences among samples. Observations based on ordination plots can be substantiated with statistical analyses that assess the clusters.</p>
+<p>There are many options for ordination. Broadly they can be broken into:</p>
+<ol type="1">
+<li>Implicit and Unconstrained (exploratory)
+<ul>
+<li>Principal Components Analysis (PCA) using Euclidean distance</li>
+<li>Correspondence Analysis (CA) using Pearson chi-squared</li>
+<li>Detrended Correspondence Analysis (DCA) using chi-square</li>
+</ul></li>
+<li>Implicit and Constrained (explanatory)
+<ul>
+<li>Redundancy Analysis (RDA) using Euclidean distance</li>
+<li>Canonical Correspondance Analysis (CCA) using Pearson chi-squared</li>
+</ul></li>
+<li>Explicit and Unconstrained (exploratory)
+<ul>
+<li>Principal Coordinates Analysis (PcoA)</li>
+<li>non-metric Multidimensional Scaling (nMDS)</li>
+<li>Choose your own distance measure - Bray-Curtis - takes into account abundance (in this case abunance is the number of reads) - Pearson chi-squares - statistical test on randomness of differences - Jaccard - presence/abense - Chord - UniFrac, which incorporates phylogeny. - <em>note</em>: if you set the distance metric to Euclidean then PCoA becomes Principal Components Analysis.</li>
+</ul></li>
+</ol>
+<p><strong>Some extra explanatory notes on PCoA and nMDS</strong></p>
+<p>PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenan alysis: each of the resulting axes is an eigen vector associated with an eigen value, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue. When plotting the ordination result in an x/y scatterplot, the axis with the largest eigenvalue is plotted on the first axis, and the one with the second largest on the second axis.</p>
+<p>NMDS attempts to represent the pairwise dissimilarity between objects in a low-dimensional space. Can use any dissimilarity coefficient or distance measure. NMDS is a rank-based approach based on an iterative algorithm. While information about the magnitude of distances is lost, rank-based methods are generally more robust to data which do not have an identifiable distribution. NMDS routines often begin by random placement of data objects in ordination space. The algorithm then begins to refine this placement by an iterative process, attempting to find an ordination in which ordinated object distances closely match the order of object dissimilarities in the original distance matrix. The stress value reflects how well the ordination summarizes the observed distances among the samples.</p>
+<h4 id="detrended-correspondence-analysis-dca">Detrended correspondence analysis (DCA)</h4>
+<p><code>Implicit and Unconstrained (exploratory)</code></p>
+<p>Ordination of samples using DCA. Leave distance blank, so default is chi-square.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ordinate the data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4235421</span><span class='op'>)</span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='co'># proj &lt;- get_ordination(pseq, "MDS", "bray")</span>
+<span class='va'>ord.dca</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"DCA"</span><span class='op'>)</span>
+<span class='va'>ord_DCA</span> <span class='op'>=</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>ord.dca</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_DCA</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-14-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h4 id="canonical-correspondence-analysis-cca">Canonical correspondence analysis (CCA)</h4>
+<p><code>Implicit and Constrained (explanatory)</code></p>
+<p>Ordination of samples using CCA methods using Pearson chi-squared. Constrained variable used as <code>Group_label</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>pseq.cca</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"CCA"</span>, cca <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span>
+<span class='va'>ord_CCA</span> <span class='op'>&lt;-</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>pseq.cca</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span>
+<span class='va'>ord_CCA</span> <span class='op'>&lt;-</span> <span class='va'>ord_CCA</span> <span class='op'>+</span> <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_CCA</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-15-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h4 id="redundancy-analysis-rda">Redundancy analysis (RDA)</h4>
+<p><code>Implicit and Constrained (explanatory)</code></p>
+<p>Ordination of samples using RDA methods using Euclidean distance. Constrained variable used as <code>Group_label</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>pseq.rda</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"RDA"</span>, cca <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span>
+<span class='va'>ord_RDA</span> <span class='op'>&lt;-</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>pseq.rda</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span>
+<span class='va'>ord_RDA</span> <span class='op'>&lt;-</span> <span class='va'>ord_RDA</span> <span class='op'>+</span> <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_RDA</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-16-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h4 id="principal-coordinates-analysis-pcoa">Principal Coordinates Analysis (PCoA)</h4>
+<p>PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenanalysis: each of the resulting axes is an eigenvector associated with an eigenvalue, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue.</p>
+<p>Ordination of samples using PCoA methods and <strong>jaccard</strong> (presence/absence) distance measure</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ordinate the data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4235421</span><span class='op'>)</span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='co'># proj &lt;- get_ordination(pseq, "MDS", "bray")</span>
+<span class='va'>ord.pcoa.jac</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"PCoA"</span>, <span class='st'>"jaccard"</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_jac</span> <span class='op'>=</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>ord.pcoa.jac</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_jac</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-17-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p>Ordination of samples using PCoA methods and <strong>bray curtis</strong> (abundance) distance measure.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ordinate the data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4235421</span><span class='op'>)</span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>ord.pcoa.bray</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"PCoA"</span>, <span class='st'>"bray"</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_bray</span> <span class='op'>=</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>ord.pcoa.bray</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_bray</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-18-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h4 id="principal-coordinates-analysis-pcoa-with-unifrac">Principal Coordinates Analysis (PCoA) with unifrac</h4>
+<p>Unifrac analysis takes into account not only the differences in OTUs/ASVs but also takes into account the phylogeny of the taxa. I.e. how closely related are the taxa.</p>
+<p>We can perform unweighted (using presence/absence abundance like jaccard) or weighted (incorporating abundance data - like bray curtis).</p>
+<p><em>Unweighted unifrac</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ordinate the data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4235421</span><span class='op'>)</span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>ord_pcoa_ufuw</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"PCoA"</span>, <span class='st'>"unifrac"</span>, weighted<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_ufuw</span> <span class='op'>=</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>ord_pcoa_ufuw</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span>, shape<span class='op'>=</span><span class='st'>"Time_point"</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_ufuw</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-19-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p><em>Weighted unifrac</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>ord_pcoa_ufw</span> <span class='op'>=</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"PCoA"</span>, <span class='st'>"unifrac"</span>, weighted<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_ufw</span> <span class='op'>=</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>ord_pcoa_ufw</span>, color<span class='op'>=</span><span class='st'>"Group_label"</span>, shape<span class='op'>=</span><span class='st'>"Time_point"</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_ufw</span> <span class='op'>&lt;-</span> <span class='va'>ord_PCoA_ufw</span> <span class='op'>+</span> <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_PCoA_ufw</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-20-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h4 id="non-metric-multidimensional-scaling-nmds">Non-metric Multidimensional Scaling (nMDS)</h4>
+<p>Finally lets perform ordination using Non-metric Multidimensional Scaling. We’ll use the unifrac distance measure which takes into account phylogeny and also the <code>WEIGHTED</code> option.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ordinate the data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4235421</span><span class='op'>)</span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='va'>ord_nmds_ufw</span> <span class='op'>&lt;-</span> <span class='fu'>ordinate</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"NMDS"</span>, <span class='st'>"unifrac"</span>, weighted<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Run 0 stress 0.1465875 
+Run 1 stress 0.1697601 
+Run 2 stress 0.1466427 
+... Procrustes: rmse 0.01918481  max resid 0.1376383 
+Run 3 stress 0.177508 
+Run 4 stress 0.1697601 
+Run 5 stress 0.2015363 
+Run 6 stress 0.1465878 
+... Procrustes: rmse 0.000134178  max resid 0.001004719 
+... Similar to previous best
+Run 7 stress 0.1466427 
+... Procrustes: rmse 0.01926118  max resid 0.1382319 
+Run 8 stress 0.1466427 
+... Procrustes: rmse 0.01925229  max resid 0.1381674 
+Run 9 stress 0.1465874 
+... New best solution
+... Procrustes: rmse 0.0002624536  max resid 0.001966408 
+... Similar to previous best
+Run 10 stress 0.1465875 
+... Procrustes: rmse 0.00003078451  max resid 0.0002298629 
+... Similar to previous best
+Run 11 stress 0.1818785 
+Run 12 stress 0.1869773 
+Run 13 stress 0.1474098 
+Run 14 stress 0.1465873 
+... New best solution
+... Procrustes: rmse 0.00009571418  max resid 0.0007180497 
+... Similar to previous best
+Run 15 stress 0.1474098 
+Run 16 stress 0.1474098 
+Run 17 stress 0.177508 
+Run 18 stress 0.1474098 
+Run 19 stress 0.2004568 
+Run 20 stress 0.1465875 
+... Procrustes: rmse 0.0001422936  max resid 0.001067589 
+... Similar to previous best
+*** Solution reached</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ord_NMDS_ufw</span> <span class='op'>=</span> <span class='fu'>plot_ordination</span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='va'>ord_nmds_ufw</span>, color <span class='op'>=</span> <span class='st'>"Group_label"</span>, shape<span class='op'>=</span><span class='st'>"Time_point"</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'>geom_point</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>stat_ellipse</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ord_NMDS_ufw</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-21-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<h3 id="statistical-analysis">Statistical analysis</h3>
+<p>Here we’ll perform a statistical analysis on beta diversity.</p>
+<p>See tutorial <a href="https://mibwurrepo.github.io/Microbial-bioinformatics-introductory-course-Material-2018/beta-diversity-metrics.html#permanova">here</a>.</p>
+<p>Differences by <code>Group_label</code> using ANOVA</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Transform data to hellinger</span>
+<span class='va'>pseq.rel</span> <span class='op'>&lt;-</span> <span class='fu'>microbiome</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/microbiome/man/transform.html'>transform</a></span><span class='op'>(</span><span class='va'>ps_M</span>, <span class='st'>"hellinger"</span><span class='op'>)</span>
+<span class='co'># Pick relative abundances (compositional) and sample metadata </span>
+<span class='va'>otu</span> <span class='op'>&lt;-</span> <span class='fu'>abundances</span><span class='op'>(</span><span class='va'>pseq.rel</span><span class='op'>)</span>
+<span class='va'>meta</span> <span class='op'>&lt;-</span> <span class='fu'>meta</span><span class='op'>(</span><span class='va'>pseq.rel</span><span class='op'>)</span>
+
+<span class='co'># samples x SampleCategory as input</span>
+<span class='va'>permanova</span> <span class='op'>&lt;-</span> <span class='fu'>adonis</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>otu</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>Group_label</span>,
+                    data <span class='op'>=</span> <span class='va'>meta</span>, permutations<span class='op'>=</span><span class='fl'>999</span>, method <span class='op'>=</span> <span class='st'>"bray"</span><span class='op'>)</span>
+
+
+<span class='co'>## statistics</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>permanova</span><span class='op'>$</span><span class='va'>aov.tab</span><span class='op'>)</span><span class='op'>[</span><span class='st'>"Group_label"</span>, <span class='st'>"Pr(&gt;F)"</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.001</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='fu'>vegdist</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>otu</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>betadisper</span><span class='op'>(</span><span class='va'>dist</span>, <span class='va'>meta</span><span class='op'>$</span><span class='va'>Group_label</span><span class='op'>)</span>
+<span class='co'>### ANOVA - are groups different </span>
+<span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='fu'>betadisper</span><span class='op'>(</span><span class='va'>dist</span>, <span class='va'>meta</span><span class='op'>$</span><span class='va'>Group_label</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Analysis of Variance Table
+
+Response: Distances
+          Df   Sum Sq   Mean Sq F value  Pr(&gt;F)  
+Groups     1 0.009817 0.0098173  6.9784 0.01029 *
+Residuals 66 0.092850 0.0014068                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<h2 id="hierarchical-cluster-analysis">Hierarchical cluster analysis</h2>
+<p>Beta diversity metrics can assess the differences between microbial communities. It can be visualized with PCA or PCoA, this can also be visualized with hierarchical clustering.</p>
+<p>Function from <a href="https://bioconductor.org/packages/devel/bioc/vignettes/MicrobiotaProcess/inst/doc/MicrobiotaProcess-basics.html">MicrobiotaProcess</a> using analysis based on <a href="https://yulab-smu.top/treedata-book/">ggtree</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## All samples - detailed, include species and SampleCategory</span>
+<span class='va'>clust_all</span> <span class='op'>&lt;-</span> <span class='fu'>get_clust</span><span class='op'>(</span>obj<span class='op'>=</span><span class='va'>ps_M</span>, distmethod<span class='op'>=</span><span class='st'>"euclidean"</span>,
+                      method<span class='op'>=</span><span class='st'>"hellinger"</span>, hclustmethod<span class='op'>=</span><span class='st'>"average"</span><span class='op'>)</span>
+<span class='va'>mycols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"brown3"</span>, <span class='st'>"steelblue"</span><span class='op'>)</span>
+<span class='co'># circular layout</span>
+<span class='va'>clust_all_plot</span> <span class='op'>&lt;-</span> <span class='fu'>ggclust</span><span class='op'>(</span>obj<span class='op'>=</span><span class='va'>clust_all</span> ,
+                      layout <span class='op'>=</span> <span class='st'>"circular"</span>,
+                      pointsize<span class='op'>=</span><span class='fl'>3</span>,
+                      fontsize<span class='op'>=</span><span class='fl'>0</span>,
+                      factorNames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Group_label"</span>, <span class='st'>"Time_point_label"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_color_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='va'>mycols</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_shape_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>17</span>, <span class='fl'>15</span>, <span class='fl'>16</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ggtitle</span><span class='op'>(</span><span class='st'>"Hierarchical Cluster of All Samples (euclidean)"</span><span class='op'>)</span>
+<span class='va'>clust_all_plot</span>
+</code></pre>
+</div>
+<p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-23-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

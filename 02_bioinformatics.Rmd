@@ -1,0 +1,206 @@
+---
+title: "BIO514"
+description: |
+  Bioinformatics
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: TRUE
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Workshop - Microbiome bioinformatic analysis
+
+| Lesson        | Link           |
+| ------------------- |:--------------------:|
+| Set up and resources      | [link](03_setup.html)  |
+| Sequence processing      | [link](04_sequence_processing.html)      |
+| Data cleaning | [link](05_datacleaning.html)      |
+| Data visualization | [link](06_data_visualization.html)      |
+
+## About the data 
+
+Today we will be using amplicon 16S rRNA data from West et al. (2020) *Gut* 69, 1452-1459. doi: [10.1136/gutjnl-2019-319620](http://dx.doi.org/10.1136/gutjnl-2019-319620). The `Rdata` we will use is available from GitHub repository by the author [link here](https://github.com/ka-west/PBS_manuscript). For this workshop the relevant `.Rdata` for today's session has been made available within this repository.
+
+**Methods**
+
+Exert direct from [West et al. 2020](http://dx.doi.org/10.1136/gutjnl-2019-319620)
+
+Stool samples were randomised for processing and DNA was extracted (see online supplementary methods) using the PowerLyzer PowerSoil DNA Isolation Kit (Mo Bio). 16S rRNA gene amplicon sequencing targeting the V1-V2 regions was performed on the Illumina MiSeq platform as previously described^21^ Raw reads were processed in the R software environmentt^19^ following a published workflow^22^ which includes amplicon denoising implemented in ‘DADA2’^23^. See (online supplementary methods) for full details. Functions in the 'vegan' R package were used to calculate Shannon Diversity Indices ($\alpha$-diversity) on data rarefied to the minimum sequencing depth and Bray-Curtis dissimilarity ($\beta$-diversity) on log-transformed data (pseudocount of 1 added to each value). Significance of group separation in $\beta$-diversity was assessed by permutational multivariate analysis of variance. Changes in relative abundance were tested at each taxonomic rank from phylum to genus using the Mann-Whitney U test while differentially abundant 16S rRNA gene sequences were identified using 'DESeq2'^24^. For 'DESeq2' analysis, data were pooled for each individual rather than analysing distinct time points.
+
+**Extra reference for microbiome sequencing**      
+Mullish BH , Pechlivanis A , Barker GF , et al. Functional microbiomics evaluation of gut microbiota-bile acid metabolism interactions in health and disease. Methods 2018;149:49–58. doi: [10.1016/j.ymeth.2018.04.028](https://doi.org/10.1016/j.ymeth.2018.04.028)
+ 
+----
+
+## Introduction 
+
+Microbiome, metagenomics and bioinformatics is a huge area of study so we certainly wont be covering all aspects of it here.
+
+![Targeted amplicon and metagenomic sequencing approaches. Ref: Bharti And Grimm (2019) *Briefings in Bioinformatics* 22(1) doi: [10.1093/bib/bbz155](https://doi.org/10.1093/bib/bbz155)](images/Bharti_2019_Fig1.png)
+
+- Estimated that there are 10^14^ microorganisms inhabiting the human gut. 
+- Human gut microbiome genome size 150 x larger than the human genome. 
+- Interactions between the microbe-host are of key interest in several pathologies and applying meta-omics to describe the human gut microbiome will give a better understanding of this crucial crosstalk at mucosal interfaces.
+
+Today there are two main **molecular** approaches that we use for microbiome studies
+
+**1. Metagenomics = DNA**
+
+- Genomic characterisation of bacteria.
+- Identify what bacteria is present in sample.
+- Two main methods:
+    - A. Amplicon 16S rRNA sequencing.
+        - Sequence the 16S rRNA gene (targeting bacteria only).
+        - Use primers targeting the 16S gene - hypervariable regions (V1-9). 
+        - There are bias/differences between primers and regions.
+        - Ref: Bukin, Y., Galachyants, Y., Morozov, I. et al. The effect of 16S rRNA region choice on bacterial community metabarcoding results. Sci Data 6, 190007 (2019). doi: [10.1038/sdata.2019.7](https://doi.org/10.1038/sdata.2019.7)
+        - Most recent advances in "long-read" platforms (e.g. PacBio, nanopore) allow for full length 16S rRNA gene sequences.
+        - Currently not widely used but this will quickly change as technology becomes more widely available. 
+        - Ref: Johnson, J.S., Spakowicz, D.J., Hong, BY. et al. Evaluation of 16S rRNA gene sequencing for species and strain-level microbiome analysis. Nat Commun 10, 5029 (2019). doi: [10.1038/s41467-019-13036-1](https://doi.org/10.1038/s41467-019-13036-1)
+    - B. Shotgun/whole genome sequencing.
+        - Sequence all the genomic material within the sample.
+        - This will include the host (e.g. human) DNA as well so need much deeper level of sequencing.
+        - Able to sequence viral communities - extract RNA and convert to cDNA.
+
+**2. Metatranscriptomics = messenger RNA**
+    - Gene expression and regulation 
+    - Used for functional potential
+    - Better for relative abundance comparison - no PCR bias
+
+
+**Pros of amplicon NGS**
+
+-   Cheaper
+
+-   Less data intensive
+
+-   Easier to make sense of...e.g. good reference databases available.
+
+-   More sensitive at detecting lower abundant bacteria (shot gun sequencing = mainly host DNA)
+
+![A schematic overview outlining various experimental and computational challenges associated with 16S rRNA-based and shotgun metagenomic sequencing. Ref: Bharti And Grimm (2019) *Briefings in Bioinformatics* 22(1) doi: [10.1093/bib/bbz155](https://doi.org/10.1093/bib/bbz155)](images/Bharti_2019_Fig2.png)
+
+**Terminology note**
+
+- You may see reference to difference sequencing platforms when you read so just to clarify. Next-generation sequencing = high throughput sequencing. Although now terminology has moved to "short-read" vs "long-read" sequencing. But when reading most articles next-generation sequencing usually equals short read sequencing.
+- Short read platforms
+  - 454 - pyrosequencing
+  - Ion Torrent - semiconductor sequencing
+  - Illumina - clusters on flow cell (most common)
+        - Machines: iSeq NextSeq (300 bp), MiniSeq NextSeq (300 bp), MiSeq (max 600 bp), NextSeq (300 bp), Nova Seq (500 bp)
+- Long read platforms - technologies still developing to improve accuracy
+  - PacBio
+  - Nanopore
+  
+------------------------------------------------------------------------
+
+## Bioinformatics
+
+
+We will only briefly go through these steps to give you an idea of what is involved. There are various programs and databases required for these steps - so you won't be performing all of these on your machines today. 
+
+Instead I'll go through the main steps and give you access to some scripts. Then I'll share with you the output files that we will use for the data visualization part.
+
+There is a wealth of information and different pipelines available but generally most use very similar algorithms *under the hood*.
+
+The most widely used pipelines include:
+
+-   [USEARCH](https://www.drive5.com/usearch/) - either UPARSE or UNOISE
+-   [dada2](https://benjjneb.github.io/dada2/tutorial.html)
+-   [Mouthur](https://mothur.org/)
+-   [vsearch](https://github.com/torognes/vsearch)
+-   [QIIME2](https://qiime2.org/) - this using either dada2 or vsearch
+
+Note that the list above is not mutually exclusive. For example the popular QIIME2 uses `dada2` or `vsearch` or clustering/denoising.
+
+**Main steps of processing 16S amplicon sequencing**
+
+*Optional first step* - depending on sequence platform if you have forward and reverse reads you will first need to merge these. Most pipelines have built in merge function so you can avoid using a separate program. This step is fairly straight forward and not much difference between programs. [PEAR](https://cme.h-its.org/exelixis/web/software/pear/) is a popular stand alone program.
+
+1.  Demulitplex.
+
+    -   Use of barcodes (i.e. sequence of 6-8 nucleotides added to primers to identify individual samples).
+
+    -   Depending on library prep used and sequencing platform this might be automated.
+
+    -   E.g. Illumina and Nextera indexes are automatically demultiplexed on sequencing machine.
+
+2.  Trim primers and distal bases - this will also depend on QC (quality) scores.
+
+    - Lots of options available, again I try and keep number of programs etc to a minimum. Most pipelines will have some sort of trimming/QC function built in.
+    - [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is popular for viewing sequence files and automating QC reports.
+
+
+3.  Cluster or denoise
+
+    -   Group related sequences.
+
+    -   Traditional approaches relied on *clustering*.
+
+        -   Grouped sequences that were within 97% similar i.e group sequences at the species level.
+
+        -   Common tools = vsearch (use stand alone or within QIIME2 pipeline) and uparse (used within USEARCH pipeline).
+
+    -   Newer approaches use *denoising* method.
+
+        -   More accurate method to correct sequencing errors and determine real biological sequences at single nucleotide resolution by generating amplicon sequence variants (ASVs).
+
+        -   Common tools = dada2 (use stand alone or within QIIME2 pipeline) and unoise3 (used within USEARCH pipeline).
+
+**Terminology**: The data produced from the clustering/denoising step is referred to a either "Operational Taxonomic Units (OTUs)" or "Amplicon Sequence Variants (ASVs)". Unfortunately terminology in genomics is not always consistent. But as a general rule of thumb OTUs refer to data produced via clustering and ASVs refers to data produced by denoising (however unoise3 in USEARCH refers to these as Zero-radius taxonomic units (ZOTUs) in this case ZOTU = ASV).
+
+4.  Assign taxonomy
+
+    -   Algorithms on taxonomic assignment and classification level (e.g. Genus, Family etc). Rarely obtain accurate species level assignment with 16S amplicon but depends on the amplicon region, size, taxa group and region of 16S gene.
+
+        -   [q2-feature-classifier](https://docs.qiime2.org/2021.2/plugins/available/feature-classifier) - used in QIIME2 pipeline (one of the best options currently available).
+
+        -   [SINTAX](https://www.drive5.com/usearch/manual/sintax_algo.html) - used within USEARCH pipeline.
+
+    -   Curated databases with representative of taxa. Comparison of main databases - SILVA, RDP, Greengenes, NCBI and OTT how do these taxonomies compare? Balvociute and Huson (2017) BMC Genomics, 18(2), 114. doi: [10.1186/s12864-017-3501-4](https://doi.org/10.1186/s12864-017-3501-4).
+
+        -   [Greengenes](https://greengenes.secondgenome.com/)
+        -   [SILVA](https://www.arb-silva.de/)
+        -   [RDP](https://rdp.cme.msu.edu/)
+
+----
+
+## Data cleaning and visualization
+
+There are a number of different analysis and visualization options that you can use depending on your data and questions.
+
+Some common examples include:
+
+- Rarefaction curves
+- Alpha diversity plots
+- Taxonomy barplots/heatmaps
+- Beta diversity and ordination
+- Network analysis
+- Correlation
+- Phylogenetic
+
+![Overview of statistical and visualization methods for feature tables. Downstream analysis of microbiome feature tables, including alpha/beta-diversity (A/B), taxonomic composition (C), difference comparison (D), correlation analysis (E), network analysis (F), classification of machine learning (G), and phylogenetic tree (H). Ref: Liu, YX., Qin, Y., Chen, T. et al. A practical guide to amplicon and metagenomic analysis of microbiome data. Protein Cell (2020). [10.1007/s13238-020-00724-8](https://doi.org/10.1007/s13238-020-00724-8)](images/Liu_2020_Fig3.png)
+
+In this part of the workshop we will go through some different ways you can visualize the data and some statistical analysis. We will do this in RStudio. Just like the bioinformatic sites above there is a wealth of options for this. My personal preference is RStudio as it is easily reproducible (*VERY* important for bioinformatics) and is easy to upscale. In addition with the ever increasing data being produced RStudio provides the best platform to integrate different data types and create custom pipelines.
+
+Working within RStudio environment is not limited to just running code locally on your machine. [RShiny](https://shiny.rstudio.com/) allows you to make custom apps and web interface programs..
+
+Further detail on cleaning data after processing sequences is covered [here](05_datacleaning.html)
+
+
+------
+
+## Useful links for microbial genomics analysis 
+
+`Mainly aimed at amplicon sequence methods`
+
+- [Happy Belly Bioinformatics](https://astrobiomike.github.io/misc/amplicon_and_metagen) - A useful website containing information, tutorials and links related to bioinformatics (written by a biologist turned bioinformatician!)
+- [mixOmics](http://mixomics.org/mixdiablo/) - Our mixOmics R package proposes a whole range of multivariate methods that we developed and validated on many biological studies to gain more insight into ‘omics biological studies. [Useful GitBook here](https://mixomicsteam.github.io/Bookdown/index.html)
+- [phyloseq](https://joey711.github.io/phyloseq/) - R package for the analysis of microbial communities brings many challenges. Integration of many different types of data with methods from ecology, genetics, phylogenetics, network analysis, visualization and testing
+- [Tools for Microbiome Analysis](https://microsud.github.io/Tools-Microbiome-Analysis/) - A list of R environment based tools for microbiome data exploration, statistical analysis and visualization
+- [My own list of useful microbiome resources](http://siobhonlegan.com/research_site/bioinfo/genomics/) - this includes some links to RShiny packages which provide an interactive look at your data. However they require your data to be in a specific format.

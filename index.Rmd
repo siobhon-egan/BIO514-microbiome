@@ -1,0 +1,73 @@
+---
+title: "BIO514"
+description: |
+  Systems medicine - Microbiome
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+
+Workshops and tutorials on microbiome and genomics
+
+Week 1 - [Wet lab](01_DNAextraction.html)
+
+Week 2 - [Microbiome bioinformatics](02_bioinformatics.html)
+
+  - [Set up](03_setup.html)      
+  - [Sequence processing](04_sequence_processing.html)
+  - [Data cleaning](05_datacleaning.html)
+  - [Data visualization](06_data_visualization.html)
+
+-----
+
+## References
+
+
+- Johnson, J.S., Spakowicz, D.J., Hong, BY. et al. Evaluation of 16S rRNA gene sequencing for species and strain-level microbiome analysis. Nat Commun 10, 5029 (2019). doi: [10.1038/s41467-019-13036-1](https://doi.org/10.1038/s41467-019-13036-1)
+- Pollock J, Glendinning L, Wisedchanwet T, Watson M. The Madness of Microbiome: Attempting To Find Consensus "Best Practice" for 16S Microbiome Studies. Appl Environ Microbiol. 2018;84(7):e02627-17. doi: [10.1128/AEM.02627-17](https://doi.org/10.1128/AEM.02627-17)
+- Nilakanta H, Drews KL, Firrell S, Foulkes MA, Jablonski KA. A review of software for analyzing molecular sequences. BMC Res Notes. 2014;7:830. doi: [10.1186/1756-0500-7-830](https://doi.org/10.1186/1756-0500-7-830)
+- Roumpeka DD, Wallace RJ, Escalettes F, Fotheringham I, Watson M. A Review of Bioinformatics Tools for Bio-Prospecting from Metagenomic Sequence Data. Front Genet. 2017;8:23. doi: [10.3389/fgene.2017.00023](https://doi.org/10.3389/fgene.2017.00023)
+- Schriefer AE, Cliften PF, Hibberd MC, Sawyer C, Brown-Kennerly V, Burcea L, Klotz E, Crosby SD, Gordon JI, Head RD. A multi-amplicon 16S rRNA sequencing and analysis method for improved taxonomic profiling of bacterial communities. J Microbiol Methods. 2018;154:6-13. doi: [10.1016/j.mimet.2018.09.019](https://doi.org/10.1016/j.mimet.2018.09.019)
+- Bharti R, Grimm DG. Current challenges and best-practice protocols for microbiome analysis. Brief Bioinform. 2021;22(1):178-193. doi: [10.1093/bib/bbz155](https://doi.org/10.1093/bib/bbz155)
+- Allaband C, McDonald D, Vázquez-Baeza Y, et al. Microbiome 101: Studying, Analyzing, and Interpreting Gut Microbiome Data for Clinicians. Clin Gastroenterol Hepatol. 2019;17(2):218-230. doi: [10.1016/j.cgh.2018.09.017](10.1016/j.cgh.2018.09.017)
+- Lepage P, Leclerc MC, Joossens M, et al. A metagenomic insight into our gut's microbiome. Gut 2013;62:146-158. doi: [10.1136/gutjnl-2011-301805](http://dx.doi.org/10.1136/gutjnl-2011-301805)
+- Ref: Liu, YX., Qin, Y., Chen, T. et al. A practical guide to amplicon and metagenomic analysis of microbiome data. Protein Cell (2020). [10.1007/s13238-020-00724-8](https://doi.org/10.1007/s13238-020-00724-8)
+
+
+## Learning outcomes
+
+- Wet lab
+    - Understand the process of DNA extraction
+    - Identify potential sample collection and preparation that can impact the microbiome and describes possible measures to control these
+    - Be familiar with optimization methods for low biomass samples
+- Bioinformatics
+    - Understand the different ways data is stored during the sequencing and analysis process
+    - Understand post-sequence processing steps involved and there importance in downstream analysis
+    - Explain the differences in diversity measures used in microbiome analysis
+    - Be familar with analysis of amplicon 16S bacteria analysis using the RStudio environment
+    
+
+## Glossary
+
+- Microbiome - the microorganisms of a specific habitat and surrounding environment. Sometimes specific for bacteria, but also can be used more broadly for microscopic organisms (e.g. viruses, single-cell eukaryotes, bacteria and sometimes parasites).
+- Metagenomics - all the genetic material recovered directly from environmental samples.
+- OTUs - Operation taxonomic units. Generally considered to be clustered at 97% similar level - species level.
+- ASVs - Amplicon sequence variants. Denoised sequence variants. Equivalent to zero radius operational taxonomic units (zOTU)   
+- 16S - 16S ribosomal RNA gene, small subunit of a prokaryotic ribosome (SSU rRNA).
+- Hypervariable region - portions in the genome of a taxa with much higher levels of variation than other similar areas,
+- Cluster -  algorithms that attempt to group related biological sequences, generally at a set threshold, for example: species level = 97% (e.g. OTUs).
+- Denoise - a computational method for removing sequence errors and identifying correct true biological sequences in the reads. These approaches provide improved resolution and result in unique biological sequences (e.g. ASVs, ZOTUs).
+- OTU table - also known as count data, contains the list of OTU/ASVs and number of sequences per sample.     
+In this example each row is a sample and a column is the OTU/ASV.
+- Taxonomy table - spreadsheet containing OTU/ASV and taxonomic identify, generally as 7 columns (Kingdom, Phylum, Class, Order, Family, Genus, Species).
+- Sample data - contains metadata associated with samples.
+- Phyloseq object - multi-component data set merging OTU table, taxonomy table, sample data, sequences and phylogenetic table. Part of the [phyloseq R package](https://joey711.github.io/phyloseq/).

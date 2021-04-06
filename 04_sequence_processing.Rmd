@@ -1,0 +1,213 @@
+---
+title: "BIO514"
+description: |
+  Bioinformatics - sequence processing
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+As mentioned there are lots of options for processing sequence data, this work flow uses the [QIIME2](https://qiime2.org/) pipeline. While you can also perform statistical analysis and visualize your data in QIIME2, as it is a web based platform it is restricted in terms of analysis options, customising figures, cleaning & subsetting data and integrating other data.
+
+My approach/recommendations:
+
+- Keep up to date with the latest, best practice pipelines and algorithms.     
+    - However, when it comes time to analysing data for a specific publication/thesis/project you need to draw a line at some point.
+    - Decide on a method and stick to it. 
+    - As long as you document what you did and why, you can justify later in the discussion (and to reviewers) your decision. 
+    - Hint: this is why good documentation at time of analysis is so important. You will not remember in a few days/weeks/months what and why you analysed the data in a certain way. Your future self will thank you for it!
+- Use open source programs
+    - This also helps with reproducibility, as you don't have to rely on subscriptions etc. 
+    - Makes it easier to collaborate and allow others to help you.
+    - A lot of open source programs have good documentation and community forums.
+- Minimize the number of different languages/programs required. 
+    - While relying on different "easy-to-use" program may seem promising, it can create down stream issues with integrating other data.
+    - Also as programs/environments get updated, it can limit portability. 
+
+You need to find a balance that works for you and your study question(s).
+
+## QIIME2
+
+Official [QIIME2 docs](https://qiime2.org/), and view objects via [QIIME2 view](https://view.qiime2.org/).
+
+Customised scripts available at https://github.com/siobhon-egan/qiime2_analysis
+
+Pipeline created with [QIIME2-2020.11](https://docs.qiime2.org/2020.11/install/native/), see QIIME2 documentation for install based on your platform.
+
+
+**Sequence data input**
+
+Paired end sequence data in directory `raw_data/`.
+Sample data named in the following format: `SAMPLEID_L001_R1_001.fastq.gz` (forward) or `SAMPLEID_L001_R2_001.fastq.gz` (reverse).
+
+**Activate QIIME2**
+```
+conda activate qiime2-2020.11
+```
+
+### Import data
+
+Import `.fastq.gz` data into QIIME2 format using [Casava 1.8 demultiplexed (paired-end)](https://docs.qiime2.org/2020.11/tutorials/importing/#casava-1-8-paired-end-demultiplexed-fastq) option. Remember assumes raw data is in directory labeled `raw_data/` and file naming format as above.
+
+```
+qiime tools import \
+--type 'SampleData[PairedEndSequencesWithQuality]' \
+--input-path raw_data \
+--input-format CasavaOneEightSingleLanePerSampleDirFmt \
+--output-path 16S_demux_seqs.qza
+
+# create visualization file
+qiime demux summarize \
+  --i-data 16S_demux_seqs.qza \
+  --o-visualization 16S_demux_seqs.qzv
+```
+
+Inspect `16S_demux_seqs.qzv` artifact for quality scores. This will help decide on QC parameters. 
+
+### Denoising
+
+Based on quality plot in the above output `16S_demux_seqs.qza` adjust trim length to where quality falls.
+
+Then you can also trim primers. In this case working with 16S V1-2 data.
+
+```
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs 16S_demux_seqs.qza \
+  --p-trim-left-f 20 \
+  --p-trim-left-r 19 \
+  --p-trunc-len-f 250 \
+  --p-trunc-len-r 250 \
+  --o-table 16S_denoise_table.qza \
+  --o-representative-sequences 16S_denoise_rep-seqs.qza \
+  --o-denoising-stats 16S_denoise-stats.qza
+```
+
+At this stage, you will have artifacts containing the feature table, corresponding feature sequences, and DADA2 denoising stats. You can generate summaries of these as follows.
+
+```
+qiime feature-table summarize \
+  --i-table 16S_denoise_table.qza \
+  --o-visualization 16S_denoise_table.qzv \
+  --m-sample-metadata-file sample-metadata.tsv # Can skip this bit if needed.
+
+qiime feature-table tabulate-seqs \
+  --i-data 16S_denoise_rep-seqs.qza \
+  --o-visualization 16S_denoise_rep-seqs.qzv
+
+qiime metadata tabulate \
+  --m-input-file 16S_denoise-stats.qza \
+  --o-visualization 16S_denoise-stats.qzv
+```
+
+**Export ASV table**
+
+To produce an ASV table with number of each ASV reads per sample that you can open in excel. 
+
+Need to make biom file first
+```
+qiime tools export \
+--input-path 16S_denoise_table.qza \
+--output-path feature-table
+
+biom convert \
+-i feature-table/feature-table.biom \
+-o feature-table/feature-table.tsv \
+--to-tsv
+```
+
+### Phylogeny
+
+Several downstream diversity metrics require that a phylogenetic tree be constructed using the Operational Taxonomic Units (OTUs) or Amplicon Sequence Variants (ASVs) being investigated.
+
+```
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+```
+
+**Export**
+
+Covert unrooted tree output to newick formatted file
+```
+qiime tools export \
+  --input-path unrooted-tree.qza \
+  --output-path exported-tree
+```
+
+### Taxonomy
+
+Assign taxonomy to denoised sequences using a pre-trained naive bayes classifier and the q2-feature-classifier plugin. Details on how to create a classifier are available [here](https://github.com/siobhon-egan/qiime2_analysis/blob/master/2.classifiers.md). 
+
+I am using a pre-training classifer for the 16S V1-2 with reference a SILVA database version 138.1.
+
+Note that taxonomic classifiers perform best when they are trained based on your specific sample preparation and sequencing parameters, including the primers that were used for amplification and the length of your sequence reads.
+
+```
+qiime feature-classifier classify-sklearn \
+--i-classifier /Taxonomy/QIIME2_classifiers_v2020.11/Silva_99_Otus/27F-388Y/classifier.qza \
+--i-reads 16S_denoise_rep-seqs.qza \
+--o-classification qiime2-taxa-silva/taxonomy.qza
+
+qiime metadata tabulate \
+--m-input-file qiime2-taxa-silva/taxonomy.qza \
+--o-visualization qiime2-taxa-silva/taxonomy.qzv
+```
+
+## Data output
+
+Lets take a took at something prepared earlier.
+
+There are two major outputs from the process above.
+
+```{r, echo=TRUE, results='hide'}
+
+pkgs <- c("readr", "rmarkdown")
+lapply(pkgs, require, character.only = TRUE)
+```
+
+**1. The count data** 
+
+This is the data contains the list of ASVs and number of sequences per sample.     
+In this example each row is a sample and a column is the OTU/ASV.
+
+```{r}
+# read data
+otu_table <- read_csv("data/otu_table.csv")
+paged_table(otu_table)
+```
+
+
+**2. The taxonomy data** 
+
+This contains the taxonomy of the count (or OTU) data. Each row is a unique OTU/ASV and column reflect **Kingdom, Phylum, Class, Order, Family, Genus, Species**.
+
+```{r}
+# read data
+tax_table <- read_csv("data/tax_table.csv")
+# To make it easier viewing remove sequence name in first column
+drop <- c("X1")
+df = tax_table[,!(names(tax_table) %in% drop)]
+paged_table(df)
+```
+
+**3. The sample data**
+
+You'll also need to have some sample metadata as well - this contains the variables and information related to our samples.
+Lets take a quick look at the for the example data set we are about to use.
+
+
+```{r}
+# read data
+sam_data <- read_csv("data/sam_data.csv")
+paged_table(sam_data)
+```
+

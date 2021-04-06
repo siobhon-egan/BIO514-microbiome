@@ -1,0 +1,34 @@
+name: "BIO514"
+title: "BIO514"
+description: |
+  BIO514
+output_dir: "docs"
+navbar:
+  search: true
+  left:
+    - text: "Home"
+      href: index.html
+  right:
+    - text: "Laboratory"
+      href: 01_DNAextraction.html
+    - text: "Workshop"
+      menu:
+        - text: "Introduction"
+          href: 02_bioinformatics.html
+        - text: "Set up"
+          href: 03_setup.html
+        - text: "Sequence processing"
+          href: 04_sequence_processing.html
+        - text: "Data cleaning"
+          href: 05_datacleaning.html
+        - text: "Data visualization"
+          href: 06_data_visualization.html
+    - text: "Data"
+      icon: fa-database
+      href: 03_setup.html
+    - text: "Slides"
+      icon: far fa-file-alt
+      href: workshop_slides/skeleton.html
+    - icon: fab fa-github
+      href: https://github.com/siobhon-egan/BIO514/
+output: distill::distill_article

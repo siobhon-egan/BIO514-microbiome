@@ -1,0 +1,121 @@
+---
+title: "BIO514"
+description: |
+  Post sequence processing
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: TRUE
+---
+
+While we will not perform these steps today but we'll spend a few minutes just talking about some data processing steps after sequence clustering/denoising.
+
+Depending on your aims the importance of these steps will differ. 
+
+## Check taxonomy
+
+Again this will depend on what the aims of your study are. For most 'composition' studies or those relying on broad scale trends in patterns this won't be as important. However, if you are using microbiome/metagenomics for diagnostic purposes or pathogen studies you will need to confirm taxa. The best method/databases will depend on your taxa. For some groups of bacteria differentiation using partial sequence of 16S gene is not possible (e.g. *Rickettsia*). Also the quality of reference databases will also depend on the region you sequence. Generally sequencing the start (e.g. V1-2) has less references available then the middle of the 16S gene (e.g. V3-4).
+
+Remember from [bioinformatics overview](02_bioinformatics.html) we spoke about two aspects to this (1) Assignment algorithms and (2) Reference databases.
+
+Generally pipelines use curated bacteria 16S databases but if your sequence does not match any bacteria it will classify as unknown. Most people use NCBI BLAST against all sequence data to confirm identity for any taxa that require further confirmation.
+
+The more accurate your taxonomic assignment the better downstream analysis is - in particular **functional assignment** and **16S gene copy number prediction** (see below).
+
+## Clean sequence data
+
+Remember your control from the extraction process? 
+Well this is where you subtract that "background" bacteria noise. 
+
+Additional bonus points for
+
+- Using mock communities (e.g. Mock Bacteria ARchaea Community; MBARC-26, ref: Singer et al. *Sci Data* 3, 160081 (2016). doi: [10.1038/sdata.2016.81](https://doi.org/10.1038/sdata.2016.81)) 
+- Quantifying input DNA concentration which can then be used for frequency detection methods using [decontam package](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html#identify-contaminants---frequency) (details below).
+
+**The `Decontam` R Package**
+
+[decontam](https://benjjneb.github.io/decontam/) with detailed [tutorial](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html)
+
+Reference: Davis et al. (2018) *Microbiome*, 6, 226 doi: [10.1186/s40168-018-0605-2](https://doi.org/10.1186/s40168-018-0605-2).
+
+Simple code for identifying contaminant taxa based on prevalence data. 
+Phyloseq object is `ps` and the sample data has a column called `Sample_or_Control` where the control samples are `Control Sample`. Default prevalence threshold is set to `0.1`. I recommend you check what taxa is identified as "contaminant" and see if it makes sense (this where its good to know something about your samples/microbiology). You may need to adjust threshold as needed, e.g. for more aggressive classification threshold rather than the default try `0.5`.
+
+Install package
+
+```
+# Install package
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("decontam")
+```
+
+Define control samples and identify taxa present in them using prevalence method.
+
+```
+sample_data(ps)$is.neg <- sample_data(ps)$Sample_or_Control == "Control Sample"
+contamdf.prev <- isContaminant(ps, method="prevalence", neg="is.neg")
+
+# Identify how many contaminants
+head(which(contamdf.prev$contaminant))
+# Identify what the contaminants are
+table(contamdf.prev$contaminant)
+```
+
+Set contaminant threshold (default is 0.1).
+
+```
+contamdf.prev01 <- isContaminant(ps, method="prevalence", neg="is.neg", threshold=0.1)
+table(contamdf.prev01$contaminant)
+```
+
+Then you "subtract" these taxa from your data set. Raw data is phyloseq object `ps` and will create new phyloseq object for downstream analysis `ps.decon`
+
+```
+ps.decon <- prune_taxa(!contamdf.freq$contaminant, ps)
+ps.decon
+```
+
+**Alternative:** a very similar R package called `microDecon` also available [GitHub repo](https://github.com/donaldtmcknight/microDecon).    
+Reference: McKnight et al. (2019) *Environmental DNA*, 1, 14-25 doi: [10.1002/edn3.11](https://doi.org/10.1002/edn3.11).
+
+## Functional assignment
+
+Bacterial profiling based on 16S rRNA-based surveys gives a "who’s there?" answer. However as our knowledge improves more questions arise and now we are moving to answer question about "what can they do?". 
+
+Just like with taxonomy databases there are functional databases that group taxa into functional groups. The polypeptides predicted from these sequences are annotated by homology to gene function databases.
+
+Some reading:
+
+- Dantas G, Sommer MO, Degnan PH, Goodman AL. Experimental approaches for defining functional roles of microbes in the human gut. Annu Rev Microbiol. 2013;67:459-475. doi: [10.1146/annurev-micro-092412-155642](https://doi.org/10.1146/annurev-micro-092412-155642)
+- Qin J, Li R, Raes J, et al. A human gut microbial gene catalogue established by metagenomic sequencing. Nature. 2010;464(7285):59-65. doi: [10.1038/nature08821](https://doi.org/10.1038/nature08821)
+
+**A word of caution**       
+"...inference with the default database is likely limited outside of human samples and that development of tools for gene prediction specific to different non-human and environmental samples is warranted." - Quote from Sun et al. (2020) *Microbiome* 8, 45 doi: [10.1186/s40168-020-00815-y](https://doi.org/10.1186/s40168-020-00815-y)
+
+Popular databases:
+
+- PICRUSt - Langille et al. (2013) *Nat Biotechnol* 31(9), 814-821 doi: [10.1038/nbt.2676](https://doi.org/10.1038/nbt.2676)
+- CopyRighter - Angly et al. (2014) *Microbiome* 2, 11 doi: [10.1186/2049-2618-2-11](https://doi.org/10.1186/2049-2618-2-11)
+- PAPRICA - Dowman and Ducklow (2015) 10(8), e0135868 *PLoS ONE* doi: [10.1371/journal.pone.0135868](https://doi.org/10.1371/journal.pone.0135868)
+- Tax4Fun - ABhauer et al (2015) *Bioinformatics.* 31, 2882–4, doi: [10.1093/bioinformatics/btv287](https://doi.org/10.1093/bioinformatics/btv287)
+
+## Correct for 16S sequence abundance
+
+Number of copies of the 16S rRNA gene in bacteria varies (1-15). Still not widely used and so far databases/tools are not worthwhile.
+
+Summary of findings in Louca et al. (2018). *Microbiome* 6, 41 doi: [10.1186/s40168-018-0420-9](https://doi.org/10.1186/s40168-018-0420-9).
+
+- "...16S gene copy numbers (GCNs) could only be accurately predicted for a limited fraction of taxa, namely taxa with closely to moderately related representatives (<15% divergence in the 16S rRNA gene)."
+- "...all considered tools exhibit low predictive accuracy when evaluated against completely sequenced genomes, in some cases explaining less than 10% of the variance."
+- "Substantial disagreement was also observed between tools (R2<0.5) for the majority of tested microbial communities"
+- *In summary*: "We recommend **against correcting for 16S GCNs** in microbiome surveys by default..."
+
+Some other references:
+
+- PICRUSt - Langille et al. (2013) *Nat Biotechnol* 31(9), 814-821 doi: [10.1038/nbt.2676](https://doi.org/10.1038/nbt.2676)
+- CopyRighter - Angly et al. (2014) *Microbiome* 2, 11 doi: [10.1186/2049-2618-2-11](https://doi.org/10.1186/2049-2618-2-11)
+- PAPRICA - Dowman and Ducklow (2015) 10(8), e0135868 *PLoS ONE* doi: [10.1371/journal.pone.0135868](https://doi.org/10.1371/journal.pone.0135868)
+- UNBIAS [Edgar preprint](https://www.biorxiv.org/content/10.1101/124149v1.full.pdf) available in [USEARCH](https://www.drive5.com/usearch/)

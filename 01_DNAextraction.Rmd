@@ -1,0 +1,100 @@
+---
+title: "BIO514"
+description: |
+  Wet lab
+site:
+  distill::distill_article:
+    toc: yes
+    toc_depth: 2
+---
+
+`Date: 30th March 2021`
+
+# DNA Extraction from human faecal samples
+
+>Following protocol for Isolation of DNA from Stool for Pathogen (bacteria) detection using QIAGEN DNA extraction kit. Lysis conditions in this protocol are optimized to increase the ratio of nonhuman DNA to human DNA. Human DNA is not excluded by this protocol.
+
+## Starting notes
+
+**QIAGEN information**
+
+- [QIAamp Fast DNA Stool Mini Handbook](https://www.qiagen.com/ca/resources/download.aspx?id=2a3f2c0b-2e8a-49fd-b442-829108ae1a4a&lang=en)
+- [QIAamp Fast DNA Stool Mini Kit - Quick-Start Protocol](https://www.qiagen.com/ca/resources/download.aspx?id=72cb48d4-62a7-49a1-93eb-8d19d6ca34b1&lang=en)
+
+**Controls**
+
+- *VERY* important in microbiome or metagenomic studies
+- Need to know "background" noise (remove the "background" profile later in bioinformatics)
+    - E.g. the 'kitome' - Stinson et al. (2019) *Lett. Appl. Microbiol.* 68(1) 2-8 doi: [10.1111/lam.13091](https://doi.org/10.1111/lam.13091).
+- Must be done along side samples at time of processing, so need to think about what controls are appropriate *before* you begin.
+- Particularly important for low biomass samples - need to think about what appropriate controls are for your study. Otherwise you can end up just sequencing the DNA from the extraction kit. For other tips on low biomass samples see Stinson et al. (2019) *Microbiol. Aust.* 40(4) 181-185 doi[10.1071/MA19053](https://doi.org/10.1071/MA19053)
+
+## Safety
+
+- Appropriate PPE at all times - nitrile gloves, lab coat, protective goggles.
+- Generally handled in PC2 laboratory (handle samples as if potentially infectious).
+- For more information, please consult the appropriate safety data sheets
+(SDSs). These are available online in convenient and compact PDF format at
+www.qiagen.com/safety where you can find, view and print the SDS for each QIAGEN kit
+and kit component. 
+- **DO NOT add bleach** or **acidic solutions** directly to the sample preparation waste.
+      - The sample-preparation waste contains guanidine hydrochloride from *Buffers AL* and *AW1*, which can form highly reactive compounds when combined with bleach.
+      - If liquid containing these buffers is spilt, clean with suitable laboratory detergent and water. If the spilt liquid contains potentially infectious agents, clean the affected area first with laboratory detergent (to deactivate infectious agent), rinse thoroughly with water, and then with 1% (v/v) sodium hypochlorite.
+- **Additional note**: if dealing with low biomass samples may need to consider extra precautions to minimize potential contamination. E.g. full clean suit, face mask, hair net etc.
+
+## Before starting
+
+- Prepare a thermomixer with 2 ml inlays or a water bath at 70$^\circ C$ for use in steps 3 and 8.
+- For detection of cells that are difficult to lyse, such as Gram-positive bacteria, the lysis temperature in step 3 can be increased to 95$^\circ C$, if necessary.
+- All centrifugation steps should be carried out at room temperature (15–25$^\circ C$) at 20,000 x g (approximately 14,000 rpm). Increase the centrifugation time proportionately if your centrifuge cannot provide 20,000 x g (e.g., instead of centrifuging for 5 min at 20,000 x g, centrifuge for 10 min at 10,000 x g). 
+- Redissolve any precipitates in Buffer AL and InhibitEX Buffer by heating and mixing.
+- Add ethanol to Buffer AW1 and Buffer AW2 concentrates.
+- Mix all buffers before use.
+
+## Equipment and consumables
+
+- Heatbath/thermomixer
+- Pipettes
+- Centrifuge
+- Scales
+
+## Protocol
+
+>Following protocol for Isolation of DNA from Stool for Pathogen (bacteria) detection. Lysis conditions in this protocol are optimized to increase the ratio of nonhuman DNA to human DNA. Human DNA is not excluded by this protocol. 
+
+1. Weigh 180–220 mg stool in a 2 ml microcentrifuge tube (not provided) and place tube on ice.
+    - If the sample is liquid, pipet 200 $\mu l$ into the microcentrifuge tube. Cut the end of the pipet tip to make pipetting easier.
+    - If the sample is frozen, use a scalpel or spatula to scrape bits of stool into a 2 ml microcentrifuge tube on ice.
+    - *Note*: When using frozen stool samples, take care that the samples do not thaw until InhibitEX Buffer is added in step 2 to lyse the sample; otherwise the DNA in the sample may degrade. After addition of InhibitEX Buffer, all following steps can be performed at room temperature (15–25$^\circ C$). 
+2. Add 1 ml InhibitEX Buffer to each stool sample. Vortex continuously for 1 min or until the stool sample is thoroughly homogenized.
+    - *Note*: It is important to vortex the samples thoroughly. This helps ensure maximum DNA concentration in the final eluate. 
+3. Heat the suspension for 5 min at 70$^\circ C$. Vortex for 15 s. This heating step helps to lyse bacteria and other parasites. The lysis temperature can be increased to 95$^\circ C$ for cells that are difficult to lyse (such as Gram-positive bacteria).
+4. Centrifuge sample for 1 min to pellet stool particles.
+    - **IMPORTANT**: Do not transfer any solid material. If particles are still visible in the supernatant, centrifuge the sample again.
+5. Pipet 15 $\mu l$ Proteinase K into a new 2ml microcentrifugetube (not provided).
+6. Pipet 200 $\mu l$ supernatant from step 4 into the 2 ml microcentrifuge tube containing Proteinase K.
+7. Add 200 $\mu l$ Buffer AL and vortex for 15s. 
+    - *Note*: Do not add Proteinase K directly to Buffer AL. It is essential that the sample and Buffer AL are thoroughly mixed to form a homogeneous solution.
+8. Incubate at 70$^\circ C$ for 10 min. Centrifuge briefly to remove drops from the inside of the tube lid.
+9. Add 200 $\mu l$ of ethanol (96–100%) to the lysate, and mix by vortexing.
+10. Carefully apply 600 $\mu l$ lysate from step 9 to the QIAamp spin column. Close the cap and centrifuge at full speed for 1 min. Place the QIAamp spin column in a new 2 ml collection tube, and discard the tube containing the filtrate. Close each spin column to avoid aerosol formation during centrifugation. 
+    - If the lysate has not completely passed through the column after centrifugation, centrifuge again until the QIAamp spin column is empty.
+11. Carefully open the QIAamp spin column and add 500 $\mu l$ Buffer AW1. Centrifuge for 1 min. Place the QIAamp spin column in a new 2 ml collection tube, and discard the collection tube containing the filtrate.
+12. Carefully open the QIAamp spin column and add 500 $\mu l$ Buffer AW2. Centrifuge for 3 min. Discard the collection tube containing the filtrate.
+    - **Note**: Residual Buffer AW2 in the eluate may cause problems in downstream applications. Some centrifuge rotors may vibrate upon deceleration, causing the flowthrough containing Buffer AW2 to come in contact with the QIAamp spin column. Removing the QIAamp spin column and collection tube from the rotor may also cause flow-through to come into contact with the QIAamp spin column. *Recommend* perform a second spin with new 2ml tube (not provided).
+13. Place the QIAamp spin column in a new 2 ml collection tube (not provided) and discard the old collection tube with the filtrate. Centrifuge for 3 min.
+14. Transfer the QIAamp spin column into a new, labeled 1.5 ml microcentrifuge tube (not provided) and pipet 200 $\mu l$ Buffer ATE directly onto the QIAamp membrane. Incubate for 1 min at room temperature, then centrifuge for 1 min to elute DNA. 
+    - *Bonus tip*: for low biomas samples recommend heat Buffer ATE to 60$^\circ C$, and leave to incubate on membrane for 10-15mins. Can also repeat elution step to increase yeild up to 20%.
+
+### Extra tips
+
+- Carefully apply the sample or solution to the QIAamp Mini spin column. Pipet the sample into the QIAamp Mini spin column without moistening the rim of the column.
+- Change pipet tips between all liquid transfers. The use of aerosol-barrier pipet tips is recommended.
+- Avoid touching the QIAamp membrane with the pipet tip.
+- To avoid cross-contamination, we recommend briefly centrifuging the microcentrifuge tubes after each vortexing step to remove drops from the inside of the lid.
+- Wear gloves throughout the entire procedure. In case of contact between gloves and sample, change gloves immediately.
+- Close the QIAamp Mini spin column before placing it in the microcentrifuge. Centrifuge as described.
+- Remove the QIAamp Mini spin column and collection tube from the microcentrifuge. Place the QIAamp Mini spin column in a new collection tube. Discard the filtrate and the collection tube. Please note that the filtrate may contain hazardous substances and should be disposed of appropriately.
+- Open only one QIAamp Mini spin column at a time, and take care to avoid generating aerosols.
+- For efficient parallel processing of multiple samples, fill a rack with collection tubes to which the QIAamp Mini spin columns can be transferred after centrifugation. Discard used collection tubes containing the filtrate and place the new collection tubes containing the QIAamp Mini spin columns directly into the microcentrifuge. 
+- If yield will be quantified by UV absorbance, blank the measuring device using Buffer ATE to avoid false results.
