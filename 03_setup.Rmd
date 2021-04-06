@@ -34,12 +34,12 @@ You will not be required to download this for today's tutorial but if you wanted
 
 The easiest way to follow along with this tutorial is to download this GitHub repository using either option **1** or **2** below:
 
-1. Go to https://github.com/siobhon-egan/BIO514 and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
+1. Go to https://github.com/siobhon-egan/BIO514-microbiome and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
 
 
 2. Use terminal and clone the GitHub repo.
 
 ```
-git clone https://github.com/siobhon-egan/BIO514.git
+git clone https://github.com/siobhon-egan/BIO514-microbiome.git
 ```
 

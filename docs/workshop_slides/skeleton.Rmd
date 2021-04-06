@@ -51,33 +51,19 @@ Today we will be doing through some microbiome bioinformatics.
 
 Workshop notes and data available:
 
-GitHub code repository [`r icon::fa("github")` `siobhon-egan/BIO514`](http://github.com/siobhon-egan/BIO514)          
-Website with information & tutorials [`r icon::fa("link")` `siobhonlegan.com/BIO514`](http://siobhonlegan.com/BIO514)
+GitHub code repository [`r icon::fa("github")` `siobhon-egan/BIO514`](http://github.com/siobhon-egan/BIO514-microbiome)          
+Website with information & tutorials [`r icon::fa("link")` `siobhonlegan.com/BIO514`](http://siobhonlegan.com/BIO514-microbiome)
 
 **Workflow**
 
-1. [Wet lab](https://siobhonlegan.com/BIO514/01_DNAextraction.html)
+1. [Wet lab](01_DNAextraction.html)
 
-2.[Microbiome bioinformatics](https://siobhonlegan.com/BIO514/02_bioinformatics.html)
+2.[Microbiome bioinformatics](02_bioinformatics.html)
 
-  - [Set up](https://siobhonlegan.com/BIO514/03_setup.html)      
-  - [Sequence processing](https://siobhonlegan.com/BIO514/04_sequence_processing.html)
-  - [Data cleaning](https://siobhonlegan.com/BIO514/05_datacleaning.html)
-  - [Data visualization](https://siobhonlegan.com/BIO514/06_data_visualization.html)
-
----
-
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
-background-size: 250px
-background-position: 50% 75%
-
-## xaringan
-
-- Press `h` or `?` to see the possible ninjutsu you can use in remark.js.
-
-- You can see all the goodies like this (hint press `p`).
-
-- Check out more in-depth tutorial [here](https://slides.yihui.name/xaringan/#1)
+  - [Set up](03_setup.html)      
+  - [Sequence processing](04_sequence_processing.html)
+  - [Data cleaning](05_datacleaning.html)
+  - [Data visualization](06_data_visualization.html)
 
 ---
 
@@ -167,12 +153,12 @@ You will not be required to download this for today's tutorial but if you wanted
 .small[
 The easiest way to follow along with this tutorial is to download this GitHub repository using either option **1** or **2** below:
 
-1. Go to https://github.com/siobhon-egan/BIO514 and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
+1. Go to https://github.com/siobhon-egan/BIO514-microbiome and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
 
 2. Use terminal and clone the GitHub repo.
 ]
 ```
-git clone https://github.com/siobhon-egan/BIO514.git
+git clone https://github.com/siobhon-egan/BIO514-microbiome.git
 ```
 
 ---
@@ -436,7 +422,7 @@ Further detail on cleaning data after processing sequences is covered [here](05_
 ---
 ## Links
 
-[Useful links for microbial genomics analysis](https://siobhonlegan.com/BIO514/02_bioinformatics.html)
+[Useful links for microbial genomics analysis](02_bioinformatics.html)
 
 - [Happy Belly Bioinformatics](https://astrobiomike.github.io/misc/amplicon_and_metagen) - A useful website containing information, tutorials and links related to bioinformatics (written by a biologist turned bioinformatician!)
 - [mixOmics](http://mixomics.org/mixdiablo/) - Our mixOmics R package proposes a whole range of multivariate methods that we developed and validated on many biological studies to gain more insight into ‘omics biological studies. [Useful GitBook here](https://mixomicsteam.github.io/Bookdown/index.html)
@@ -896,13 +882,13 @@ Essentially we need at least three bits of data that talk to each other:
 
 The easiest way to follow along with this tutorial is to download this GitHub repository using either option **1** or **2** below:
 
-1. Go to https://github.com/siobhon-egan/BIO514 and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
+1. Go to https://github.com/siobhon-egan/BIO514-microbiome and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
 
 
 2. Use terminal and clone the GitHub repo.
 
 ```
-git clone https://github.com/siobhon-egan/BIO514.git
+git clone https://github.com/siobhon-egan/BIO514-microbiome.git
 ```
 
 ---
@@ -1127,12 +1113,12 @@ background-position: 5% 95%
 .white[`r icon::fa("paper-plane")` siobhon.egan@murdoch.edu.au]
 </a>
 
-<a href="http://siobhonlegan.com/BIO514">
-.white[`r icon::fa("link")` siobhonlegan.com/BIO514]
+<a href="http://siobhonlegan.com/BIO514-microbiome">
+.white[`r icon::fa("link")` siobhonlegan.com/BIO514-microbiome]
 </a>
 
-<a href="http://siobhon-egan.github.io/BIO514">
-.white[`r icon::fa("github")` siobhon-egan.github.io/BIO514]
+<a href="http://siobhon-egan.github.io/BIO514-microbiome">
+.white[`r icon::fa("github")` siobhon-egan.github.io/BIO514-microbiome]
 </a>
 
 <br><br><br>

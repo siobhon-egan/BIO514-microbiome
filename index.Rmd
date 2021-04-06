@@ -27,6 +27,8 @@ Week 2 - [Microbiome bioinformatics](02_bioinformatics.html)
   - [Data cleaning](05_datacleaning.html)
   - [Data visualization](06_data_visualization.html)
 
+[SLIDES](workshop_slides/skeleton.html)
+
 -----
 
 ## References
