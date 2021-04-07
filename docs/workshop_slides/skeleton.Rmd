@@ -962,7 +962,8 @@ read_distrib
 Rarefaction is a technique to assess species richness from the results of sampling - mainly used in ecology. This curve is a plot of the number of species as a function of the number of samples. Rarefaction curves generally grow rapidly at first, as the most common species are found, but the curves plateau as only the rarest species remain to be sampled. We use this plot to see if we have reached an adequate level of sequencing depth for our samples.
 
 ---
- .scroll-box-20[
+ 
+.scroll-box-20[
 ```{r}
 # set seed
 set.seed(1)
@@ -1097,6 +1098,200 @@ distrib = ggarrange(NBS_ps_dis, MAL_ps_dis, ncol = 1, nrow = 2)
 ```{r echo=FALSE, fig.height=8.5, fig.width=15}
 distrib
 ```
+
+---
+
+## Taxa summary
+
+Create a bar plot of phyla - showing difference in two groups `No bariatric surgery` vs `Malabsorptive`.
+Note that depending on your study present a barplot might a quick way to see patterns in your data generally they are not used to represent the community composition in your final figures.
+
+Use these for visualizing at higher taxonomic levels (mostly phylum level). Remember also that you need to be careful when looking at relative microbiome abundance!
+
+---
+
+.scroll-box-15[
+```{r}
+mycols <- c("brown3", "steelblue")
+grp_abund <- get_group_abundances(ps_M, 
+                                  level = "Phylum", 
+                                  group="Group",
+                                  transform = "compositional")
+
+
+
+mean.plot.phy <- grp_abund %>% # input data
+  ggplot(aes(x= reorder(OTUID, mean_abundance), # reroder based on mean abundance
+             y= mean_abundance,
+             fill=Group)) + # x and y axis
+  geom_bar(stat = "identity",
+           position=position_dodge()) + 
+  scale_fill_manual("Group", values=mycols) + # manually specify colors
+  theme_bw() + # add a widely used ggplot2 theme
+  ylab("Mean Relative Abundance") + # label y axis
+  xlab("Phylum") + # label x axis
+  coord_flip() # rotate plot 
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+mean.plot.phy
+```
+
+---
+
+Create a bar plot of order - showing difference in two groups `No bariatric surgery` vs `Malabsorptive`
+
+.scroll-box-15[
+```{r}
+mycols <- c("brown3", "steelblue")
+grp_abund <- get_group_abundances(ps_M, 
+                                  level = "Order", 
+                                  group="Group",
+                                  transform = "compositional")
+
+
+
+mean.plot.ord <- grp_abund %>% # input data
+  ggplot(aes(x= reorder(OTUID, mean_abundance), # reroder based on mean abundance
+             y= mean_abundance,
+             fill=Group)) + # x and y axis 
+  geom_bar(stat = "identity",
+           position=position_dodge()) + 
+  scale_fill_manual("Group", values=mycols) + # manually specify colors
+  theme_bw() + # add a widely used ggplot2 theme
+  ylab("Mean Relative Abundance") + # label y axis
+  xlab("Order") + # label x axis
+  coord_flip() # rotate plot 
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+mean.plot.ord
+```
+
+---
+
+**Composition barplot**
+
+To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregare taxa at family level).
+
+.scroll-box-15[
+```{r}
+# Get relative abundance and remove low abundant taxa
+ps1.rel <- microbiome::transform(ps_M, "compositional")
+ps1.fam.rel <-aggregate_rare(ps1.rel, level = "Family", detection = 0.005, prevalence = 0.5)
+
+comp_plot <- plot_composition(ps1.fam.rel,
+                      average_by = "Group_label") + 
+  guides(fill = guide_legend(ncol = 1)) + 
+  labs(x = "Samples", 
+       y = "Relative abundance",
+       title = "Relative abundance data") +
+  scale_fill_brewer("Family", palette = "Paired")
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+comp_plot
+```
+
+---
+
+## Top taxa
+
+Now we'll just take the top 5 family taxa. Lets plot the abundance between the two groups.
+Make some comments on the value of this type of analysis and how you might interpret the data (tell me also about the type of bacteria that were identified as well).
+
+.scroll-box-10[
+```{r}
+mycols <- c("brown3", "steelblue")
+top_tax <- plot_taxa_boxplot(ps_M,
+                        taxonomic.level = "Family",
+                        top.otu = 6, 
+                        group = "Group_label",
+                        add.violin= TRUE,
+                        group.colors = mycols,
+                        title = "Top six family", 
+                        keep.other = FALSE,
+                        dot.size = 1)
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+top_tax
+```
+
+---
+
+## Heatmap
+
+Rather than a barplot heatmaps are much better at presenting the microbiome composition in samples. These are commonly used in publications!
+
+Create heatmap of core microbiome [tutorial](https://microbiome.github.io/tutorials/Core.html)
+
+Keep only taxa with count above zero and transform to compositional (relative abundance).
+
+```{r}
+ps.prune <- prune_taxa(taxa_sums(ps_M) > 0, ps_M)
+pseq.rel <- microbiome::transform(ps.prune, "compositional")
+```
+
+---
+
+Aggregate data to genus level and make heat map of the most prevalent taxa.
+
+```{r}
+library(RColorBrewer)
+
+ps.m3.rel.gen <- aggregate_taxa(pseq.rel, "Genus")
+prevalences <- seq(.05, 1, .05)
+detections <- 10^seq(log10(1e-4), log10(.2), length = 10)
+
+core_heatmap <- plot_core(ps.m3.rel.gen, 
+                plot.type = "heatmap", 
+                colours = rev(brewer.pal(5, "RdBu")),
+                prevalences = prevalences, 
+                detections = detections, min.prevalence = .5) +
+  xlab("Detection Threshold (Relative Abundance (%))")
+```
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+core_heatmap
+```
+
+---
+
+Make a heat map of all samples - this can get a bit messy when you have a lot of samples but helpful to quickly see how different samples compare.
+
+```{r}
+ps1.rel <-aggregate_rare(ps_M, level = "Family", detection = 10, prevalence = 0.5)
+
+pseq.famlog <- microbiome::transform(ps1.rel, "log10")
+
+p.famrel.heatmap <- plot_composition(pseq.famlog, 
+                             sample.sort = NULL, 
+                             otu.sort = NULL, 
+                             x.label = "Group_label", 
+                             plot.type = "heatmap", 
+                             verbose = FALSE)
+
+```
+
+---
+
+To view interactively execute the following R code.
+`ggplotly(p.famrel.heatmap)`
 
 ---
 

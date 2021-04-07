@@ -962,7 +962,8 @@ read_distrib
 Rarefaction is a technique to assess species richness from the results of sampling - mainly used in ecology. This curve is a plot of the number of species as a function of the number of samples. Rarefaction curves generally grow rapidly at first, as the most common species are found, but the curves plateau as only the rarest species remain to be sampled. We use this plot to see if we have reached an adequate level of sequencing depth for our samples.
 
 ---
- .scroll-box-20[
+ 
+.scroll-box-20[
 ```{r}
 # set seed
 set.seed(1)
@@ -1096,6 +1097,538 @@ distrib = ggarrange(NBS_ps_dis, MAL_ps_dis, ncol = 1, nrow = 2)
 
 ```{r echo=FALSE, fig.height=8.5, fig.width=15}
 distrib
+```
+
+---
+
+## Taxa summary
+
+Create a bar plot of phyla - showing difference in two groups `No bariatric surgery` vs `Malabsorptive`.
+Note that depending on your study present a barplot might a quick way to see patterns in your data generally they are not used to represent the community composition in your final figures.
+
+Use these for visualizing at higher taxonomic levels (mostly phylum level). Remember also that you need to be careful when looking at relative microbiome abundance!
+
+---
+
+.scroll-box-15[
+```{r}
+mycols <- c("brown3", "steelblue")
+grp_abund <- get_group_abundances(ps_M, 
+                                  level = "Phylum", 
+                                  group="Group",
+                                  transform = "compositional")
+
+
+
+mean.plot.phy <- grp_abund %>% # input data
+  ggplot(aes(x= reorder(OTUID, mean_abundance), # reroder based on mean abundance
+             y= mean_abundance,
+             fill=Group)) + # x and y axis
+  geom_bar(stat = "identity",
+           position=position_dodge()) + 
+  scale_fill_manual("Group", values=mycols) + # manually specify colors
+  theme_bw() + # add a widely used ggplot2 theme
+  ylab("Mean Relative Abundance") + # label y axis
+  xlab("Phylum") + # label x axis
+  coord_flip() # rotate plot 
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+mean.plot.phy
+```
+
+---
+
+Create a bar plot of order - showing difference in two groups `No bariatric surgery` vs `Malabsorptive`
+
+.scroll-box-15[
+```{r}
+mycols <- c("brown3", "steelblue")
+grp_abund <- get_group_abundances(ps_M, 
+                                  level = "Order", 
+                                  group="Group",
+                                  transform = "compositional")
+
+
+
+mean.plot.ord <- grp_abund %>% # input data
+  ggplot(aes(x= reorder(OTUID, mean_abundance), # reroder based on mean abundance
+             y= mean_abundance,
+             fill=Group)) + # x and y axis 
+  geom_bar(stat = "identity",
+           position=position_dodge()) + 
+  scale_fill_manual("Group", values=mycols) + # manually specify colors
+  theme_bw() + # add a widely used ggplot2 theme
+  ylab("Mean Relative Abundance") + # label y axis
+  xlab("Order") + # label x axis
+  coord_flip() # rotate plot 
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+mean.plot.ord
+```
+
+---
+
+**Composition barplot**
+
+To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregare taxa at family level).
+
+.scroll-box-15[
+```{r}
+# Get relative abundance and remove low abundant taxa
+ps1.rel <- microbiome::transform(ps_M, "compositional")
+ps1.fam.rel <-aggregate_rare(ps1.rel, level = "Family", detection = 0.005, prevalence = 0.5)
+
+comp_plot <- plot_composition(ps1.fam.rel,
+                      average_by = "Group_label") + 
+  guides(fill = guide_legend(ncol = 1)) + 
+  labs(x = "Samples", 
+       y = "Relative abundance",
+       title = "Relative abundance data") +
+  scale_fill_brewer("Family", palette = "Paired")
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+comp_plot
+```
+
+---
+
+## Top taxa
+
+Now we'll just take the top 5 family taxa. Lets plot the abundance between the two groups.
+Make some comments on the value of this type of analysis and how you might interpret the data (tell me also about the type of bacteria that were identified as well).
+
+.scroll-box-10[
+```{r}
+mycols <- c("brown3", "steelblue")
+top_tax <- plot_taxa_boxplot(ps_M,
+                        taxonomic.level = "Family",
+                        top.otu = 6, 
+                        group = "Group_label",
+                        add.violin= TRUE,
+                        group.colors = mycols,
+                        title = "Top six family", 
+                        keep.other = FALSE,
+                        dot.size = 1)
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+top_tax
+```
+
+---
+
+## Heatmap
+
+Rather than a barplot heatmaps are much better at presenting the microbiome composition in samples. These are commonly used in publications!
+
+Create heatmap of core microbiome [tutorial](https://microbiome.github.io/tutorials/Core.html)
+
+Keep only taxa with count above zero and transform to compositional (relative abundance).
+
+```{r}
+ps.prune <- prune_taxa(taxa_sums(ps_M) > 0, ps_M)
+pseq.rel <- microbiome::transform(ps.prune, "compositional")
+```
+
+---
+
+Aggregate data to genus level and make heat map of the most prevalent taxa.
+
+.scroll-box-12[
+```{r}
+library(RColorBrewer)
+
+ps.m3.rel.gen <- aggregate_taxa(pseq.rel, "Genus")
+prevalences <- seq(.05, 1, .05)
+detections <- 10^seq(log10(1e-4), log10(.2), length = 10)
+
+core_heatmap <- plot_core(ps.m3.rel.gen, 
+                plot.type = "heatmap", 
+                colours = rev(brewer.pal(5, "RdBu")),
+                prevalences = prevalences, 
+                detections = detections, min.prevalence = .5) +
+  xlab("Detection Threshold (Relative Abundance (%))")
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+core_heatmap
+```
+
+---
+
+Make a heat map of all samples - this can get a bit messy when you have a lot of samples but helpful to quickly see how different samples compare.
+
+.scroll-box-12[
+```{r}
+ps1.rel <-aggregate_rare(ps_M, level = "Family", detection = 10, prevalence = 0.5)
+
+pseq.famlog <- microbiome::transform(ps1.rel, "log10")
+
+p.famrel.heatmap <- plot_composition(pseq.famlog, 
+                             sample.sort = NULL, 
+                             otu.sort = NULL, 
+                             x.label = "Group_label", 
+                             plot.type = "heatmap", 
+                             verbose = FALSE)
+
+```
+]
+
+---
+
+To view interactively execute the following R code.
+`ggplotly(p.famrel.heatmap)`
+
+---
+
+## Betadiversity
+
+Variation of microbial communities between samples. Beta diversity shows the different between microbial communities from different environments.
+
+**Distance measures**
+
+Bray–Curtis dissimilarity
+- based on abundance or read count data
+- differences in microbial abundances between two samples (e.g., at species level)
+    values are from 0 to 1
+    0 means both samples share the same species at exact the same abundances
+    1 means both samples have complete different species abundances
+
+---
+
+Jaccard distance
+- based on presence or absence of species (does not include abundance information)
+- different in microbial composition between two samples
+    0 means both samples share exact the same species
+    1 means both samples have no species in common
+
+UniFrac
+- sequence distances (phylogenetic tree)
+- based on the fraction of branch length that is shared between two samples or unique to one or the other sample
+unweighted UniFrac: purely based on sequence distances (does not include abundance information)
+weighted UniFrac: branch lengths are weighted by relative abundances (includes both sequence and abundance information)
+
+.small[
+- [Phyloseq](https://joey711.github.io/phyloseq/plot_ordination-examples.html)
+- [MicrobiomeMiseq tutorial by Michelle Berr](http://deneflab.github.io/MicrobeMiseq/demos/mothur_2_phyloseq.html#constrained_ordinations)
+- [ampvis2](http://albertsenlab.org/ampvis2-ordination/)
+]
+
+---
+
+### Ordination
+
+Ordination methods are used to highlight differences between samples based on their microbial community composition - also referred to as distance- or (dis)similarity measures.
+
+.small[
+These techniques reduce the dimensionality of microbiome data sets so that a summary of the beta diversity relationships can be visualized in 2D or 3D plots. The principal coordinates (axis) each explains a certain fraction of the variability (formally called inertia). This creates a visual representation of the microbial community compositional differences among samples. Observations based on ordination plots can be substantiated with statistical analyses that assess the clusters.
+]
+
+---
+
+There are many options for ordination. Broadly they can be broken into:
+
+1. Implicit and Unconstrained (exploratory)
+    - Principal Components Analysis (PCA)	using Euclidean distance
+    - Correspondence Analysis (CA) using Pearson chi-squared
+    - Detrended Correspondence Analysis (DCA) using chi-square
+2. Implicit and Constrained (explanatory)
+    - Redundancy Analysis (RDA) using Euclidean distance
+    - Canonical Correspondance Analysis (CCA) using Pearson chi-squared
+
+
+---
+
+3. Explicit and Unconstrained (exploratory)
+    - Principal Coordinates Analysis (PcoA)	
+    - non-metric Multidimensional Scaling (nMDS)
+    - Choose your own distance measure
+          - Bray-Curtis - takes into account abundance (in this case abunance is the number of reads)
+          - Pearson chi-squares - statistical test on randomness of differences
+          - Jaccard - presence/abense
+          - Chord
+          - UniFrac, which incorporates phylogeny. 
+          - *note*: if you set the distance metric to Euclidean then PCoA becomes Principal Components Analysis.
+
+
+---
+
+**Some extra explanatory notes on PCoA and nMDS**
+
+PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenan alysis: each of the resulting axes is an eigen vector associated with an eigen value, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue. When plotting the ordination result in an x/y scatterplot, the axis with the largest eigenvalue is plotted on the first axis, and the one with the second largest on the second axis.
+
+---
+
+**Some extra explanatory notes on PCoA and nMDS**
+
+NMDS attempts to represent the pairwise dissimilarity between objects in a low-dimensional space. Can use any dissimilarity coefficient or distance measure. NMDS is a rank-based approach based on an iterative algorithm. While information about the magnitude of distances is lost, rank-based methods are generally more robust to data which do not have an identifiable distribution. NMDS routines often begin by random placement of data objects in ordination space. The algorithm then begins to refine this placement by an iterative process, attempting to find an ordination in which ordinated object distances closely match the order of object dissimilarities in the original distance matrix. The stress value reflects how well the ordination summarizes the observed distances among the samples.
+
+---
+
+#### Detrended correspondence analysis (DCA)
+
+`Implicit and Unconstrained (exploratory)`
+
+Ordination of samples using DCA. Leave distance blank, so default is chi-square.
+
+```{r}
+# Ordinate the data
+set.seed(4235421)
+mycols <- c("brown3", "steelblue")
+# proj <- get_ordination(pseq, "MDS", "bray")
+ord.dca <- ordinate(ps_M, "DCA")
+ord_DCA = plot_ordination(ps_M, ord.dca, color = "Group_label") +
+                geom_point(size = 5) + scale_color_manual(values=mycols) + stat_ellipse()
+```
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_DCA
+```
+
+---
+#### Canonical correspondence analysis (CCA)
+
+`Implicit and Constrained (explanatory)`
+
+Ordination of samples using CCA methods using Pearson chi-squared. Constrained variable used as `Group_label`.
+
+```{r}
+mycols <- c("brown3", "steelblue")
+pseq.cca <- ordinate(ps_M, "CCA", cca = "Group_label")
+ord_CCA <- plot_ordination(ps_M, pseq.cca, color = "Group_label")
+ord_CCA <- ord_CCA + geom_point(size = 4) + 
+  scale_color_manual(values=mycols) + stat_ellipse()
+```
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_CCA
+```
+
+---
+
+#### Redundancy analysis (RDA)
+
+`Implicit and Constrained (explanatory)`
+    
+Ordination of samples using RDA methods using Euclidean distance. Constrained variable used as `Group_label`.
+
+```{r}
+mycols <- c("brown3", "steelblue")
+pseq.rda <- ordinate(ps_M, "RDA", cca = "Group_label")
+ord_RDA <- plot_ordination(ps_M, pseq.rda, color = "Group_label")
+ord_RDA <- ord_RDA + geom_point(size = 4) + 
+  scale_color_manual(values=mycols) + stat_ellipse()
+```
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_RDA
+```
+
+---
+
+#### Principal Coordinates Analysis (PCoA)
+
+.small[
+PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenanalysis: each of the resulting axes is an eigenvector associated with an eigenvalue, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue.
+
+Ordination of samples using PCoA methods and **jaccard** (presence/absence) distance measure
+]
+
+---
+
+```{r}
+# Ordinate the data
+set.seed(4235421)
+mycols <- c("brown3", "steelblue")
+# proj <- get_ordination(pseq, "MDS", "bray")
+ord.pcoa.jac <- ordinate(ps_M, "PCoA", "jaccard")
+ord_PCoA_jac = plot_ordination(ps_M, ord.pcoa.jac, color = "Group_label") +
+                geom_point(size = 5) + scale_color_manual(values=mycols) + stat_ellipse()
+```
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_PCoA_jac
+```
+
+---
+
+
+Ordination of samples using PCoA methods and **bray curtis** (abundance) distance measure.
+
+```{r}
+# Ordinate the data
+set.seed(4235421)
+mycols <- c("brown3", "steelblue")
+ord.pcoa.bray <- ordinate(ps_M, "PCoA", "bray")
+ord_PCoA_bray = plot_ordination(ps_M, ord.pcoa.bray, color = "Group_label") +
+                geom_point(size = 5) + scale_color_manual(values=mycols) + stat_ellipse()
+```
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_PCoA_bray
+```
+
+---
+
+#### Principal Coordinates Analysis (PCoA) with unifrac
+
+Unifrac analysis takes into account not only the differences in OTUs/ASVs but also takes into account the phylogeny of the taxa. I.e. how closely related are the taxa.
+
+We can perform unweighted (using presence/absence abundance like jaccard) or weighted (incorporating abundance data - like bray curtis).
+
+*Unweighted unifrac*
+
+.scroll-box-10[
+```{r}
+# Ordinate the data
+set.seed(4235421)
+mycols <- c("brown3", "steelblue")
+ord_pcoa_ufuw <- ordinate(ps_M, "PCoA", "unifrac", weighted=FALSE)
+ord_PCoA_ufuw = plot_ordination(ps_M, ord_pcoa_ufuw, color = "Group_label", shape="Time_point") +
+                geom_point(size = 5) + scale_color_manual(values=mycols) + stat_ellipse()
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_PCoA_ufuw
+```
+
+---
+
+*Weighted unifrac*
+
+.scroll-box-10[
+```{r}
+mycols <- c("brown3", "steelblue")
+ord_pcoa_ufw = ordinate(ps_M, "PCoA", "unifrac", weighted=TRUE)
+ord_PCoA_ufw = plot_ordination(ps_M, ord_pcoa_ufw, color="Group_label", shape="Time_point")
+ord_PCoA_ufw <- ord_PCoA_ufw + geom_point(size = 4) + 
+  scale_color_manual(values=mycols) + stat_ellipse()
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_PCoA_ufw
+```
+
+---
+
+#### Non-metric Multidimensional Scaling (nMDS)
+
+Finally lets perform ordination using Non-metric Multidimensional Scaling. We'll use the unifrac distance measure which takes into account phylogeny and also the `WEIGHTED` option.
+
+.scroll-box-10[
+```{r}
+# Ordinate the data
+set.seed(4235421)
+mycols <- c("brown3", "steelblue")
+ord_nmds_ufw <- ordinate(ps_M, "NMDS", "unifrac", weighted=TRUE)
+ord_NMDS_ufw = plot_ordination(ps_M, ord_nmds_ufw, color = "Group_label", shape="Time_point") +
+                geom_point(size = 5) + scale_color_manual(values=mycols) + stat_ellipse()
+ord_NMDS_ufw
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+ord_NMDS_ufw
+```
+
+---
+
+### Statistical analysis
+
+Here we'll perform a statistical analysis on beta diversity.
+
+See tutorial [here](https://mibwurrepo.github.io/Microbial-bioinformatics-introductory-course-Material-2018/beta-diversity-metrics.html#permanova).
+
+Differences by `Group_label` using ANOVA
+
+.scroll-box-12[
+```{r}
+# Transform data to hellinger
+pseq.rel <- microbiome::transform(ps_M, "hellinger")
+# Pick relative abundances (compositional) and sample metadata 
+otu <- abundances(pseq.rel)
+meta <- meta(pseq.rel)
+
+# samples x SampleCategory as input
+permanova <- adonis(t(otu) ~ Group_label,
+                    data = meta, permutations=999, method = "bray")
+
+
+## statistics
+print(as.data.frame(permanova$aov.tab)["Group_label", "Pr(>F)"])
+dist <- vegdist(t(otu))
+mod <- betadisper(dist, meta$Group_label)
+### ANOVA - are groups different 
+anova(betadisper(dist, meta$Group_label))
+```
+]
+
+---
+
+## Hierarchical cluster analysis
+
+Beta diversity metrics can assess the differences between microbial communities. It can be visualized with PCA or PCoA, this can also be visualized with hierarchical clustering. 
+
+Function from [MicrobiotaProcess](https://bioconductor.org/packages/devel/bioc/vignettes/MicrobiotaProcess/inst/doc/MicrobiotaProcess-basics.html) using analysis based on [ggtree](https://yulab-smu.top/treedata-book/).
+
+.scroll-box-12[
+```{r}
+## All samples - detailed, include species and SampleCategory
+clust_all <- get_clust(obj=ps_M, distmethod="euclidean",
+                      method="hellinger", hclustmethod="average")
+mycols <- c("brown3", "steelblue")
+# circular layout
+clust_all_plot <- ggclust(obj=clust_all ,
+                      layout = "circular",
+                      pointsize=3,
+                      fontsize=0,
+                      factorNames=c("Group_label", "Time_point_label")) +
+  scale_color_manual(values=mycols) +
+  scale_shape_manual(values=c(17, 15, 16)) + 
+  ggtitle("Hierarchical Cluster of All Samples (euclidean)")
+```
+]
+
+---
+
+```{r echo=FALSE, fig.height=8.5, fig.width=15}
+clust_all_plot
 ```
 
 ---

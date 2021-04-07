@@ -30,6 +30,8 @@ Rename so `fastq.gz` files in format `SAMPLEID_L001_R1_001.fastq.gz` (forward) o
 
 You will not be required to download this for today's tutorial but if you wanted you could use this data and follow the [sequence processing](04_sequence_processing.html) page.
 
+Pre-processed QIIME2 sequence data as outlined in [sequence processing](04_sequence_processing.html) is available for download on [FigShare link](https://figshare.com/s/0c459524e59953bf2585). Download files and you can view them using [QIIME2 view](https://view.qiime2.org/).
+
 2. **RData** (*REQUIRED*)
 
 The easiest way to follow along with this tutorial is to download this GitHub repository using either option **1** or **2** below:
