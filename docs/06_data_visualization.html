@@ -2190,7 +2190,7 @@ phy_tree()    Phylogenetic Tree: [ 4318 tips and 4316 internal nodes ]</code></p
 <p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-2-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <p><strong>Read density plot</strong><br />
-Useful for QC purposes. This will show you the distirbution of sequencing depth among samples. Ideally you want an even number of reads per sample. If you see lots of variation then library preparation needs to be optimised and you will need to perform more thorough data cleaning (i.e. rarefy reads - but this is not ideal.<br />
+Useful for QC purposes. This will show you the distribution of sequencing depth among samples. Ideally you want an even number of reads per sample. If you see lots of variation then library preparation needs to be optimised and you will need to perform more thorough data cleaning (i.e. rarefy reads - but this is not ideal.<br />
 Ref: McMurdie PJ, Holmes S. Waste not, want not: why rarefying microbiome data is inadmissible. PLoS Comput Biol. 2014 3;10(4):e1003531. doi: <a href="10.1371/journal.pcbi.1003531">https://doi.org/10.1371/journal.pcbi.1003531</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2268,7 +2268,7 @@ Statistical analysis with wilcoxon pair-wise test</p>
 </div>
 <p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-5-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
-<p>Save your figures directly from R for bonus points on quality data reproducibility! This line with save your combined alpha diversity plots into a direcoty called <em>plots/</em></p>
+<p>Save your figures directly from R for bonus points on quality data reproducibility! This line with save your combined alpha diversity plots into a directory called <em>plots/</em></p>
 <pre><code>ggsave(&quot;alphadiv_withpvalues.pdf&quot;, plot = alphadiv_wp, path = &quot;plots&quot;, width = 30, height = 30, units = &quot;cm&quot;)</code></pre>
 <h2 id="distribution-plot">Distribution plot</h2>
 <p>This plot is good to give you an idea of the how taxa are distribution within the data. It will give you an idea about general trends in the data and help guide how further analysis.</p>
@@ -2307,7 +2307,7 @@ Statistical analysis with wilcoxon pair-wise test</p>
 
 
 <span class='va'>mean.plot.phy</span> <span class='op'>&lt;-</span> <span class='va'>grp_abund</span> <span class='op'>%&gt;%</span> <span class='co'># input data</span>
-  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>OTUID</span>, <span class='va'>mean_abundance</span><span class='op'>)</span>, <span class='co'># reroder based on mean abundance</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>OTUID</span>, <span class='va'>mean_abundance</span><span class='op'>)</span>, <span class='co'># reorder based on mean abundance</span>
              y<span class='op'>=</span> <span class='va'>mean_abundance</span>,
              fill<span class='op'>=</span><span class='va'>Group</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># x and y axis</span>
   <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span>,
@@ -2334,7 +2334,7 @@ Statistical analysis with wilcoxon pair-wise test</p>
 
 
 <span class='va'>mean.plot.ord</span> <span class='op'>&lt;-</span> <span class='va'>grp_abund</span> <span class='op'>%&gt;%</span> <span class='co'># input data</span>
-  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>OTUID</span>, <span class='va'>mean_abundance</span><span class='op'>)</span>, <span class='co'># reroder based on mean abundance</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>OTUID</span>, <span class='va'>mean_abundance</span><span class='op'>)</span>, <span class='co'># reorder based on mean abundance</span>
              y<span class='op'>=</span> <span class='va'>mean_abundance</span>,
              fill<span class='op'>=</span><span class='va'>Group</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># x and y axis </span>
   <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span>,
@@ -2350,7 +2350,7 @@ Statistical analysis with wilcoxon pair-wise test</p>
 <p><img src="06_data_visualization_files/figure-html5/unnamed-chunk-8-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <p><strong>Composition barplot</strong></p>
-<p>To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregare taxa at family level).</p>
+<p>To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregate taxa at family level).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Get relative abundance and remove low abundant taxa</span>
@@ -2471,13 +2471,13 @@ Statistical analysis with wilcoxon pair-wise test</p>
 </ul></li>
 <li>Explicit and Unconstrained (exploratory)
 <ul>
-<li>Principal Coordinates Analysis (PcoA)</li>
+<li>Principal Coordinates Analysis (PCoA)</li>
 <li>non-metric Multidimensional Scaling (nMDS)</li>
-<li>Choose your own distance measure - Bray-Curtis - takes into account abundance (in this case abunance is the number of reads) - Pearson chi-squares - statistical test on randomness of differences - Jaccard - presence/abense - Chord - UniFrac, which incorporates phylogeny. - <em>note</em>: if you set the distance metric to Euclidean then PCoA becomes Principal Components Analysis.</li>
+<li>Choose your own distance measure - Bray-Curtis - takes into account abundance (in this case abundance is the number of reads) - Pearson chi-squares - statistical test on randomness of differences - Jaccard - presence/absence - Chord - UniFrac, which incorporates phylogeny. - <em>note</em>: if you set the distance metric to Euclidean then PCoA becomes Principal Components Analysis.</li>
 </ul></li>
 </ol>
 <p><strong>Some extra explanatory notes on PCoA and nMDS</strong></p>
-<p>PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenan alysis: each of the resulting axes is an eigen vector associated with an eigen value, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue. When plotting the ordination result in an x/y scatterplot, the axis with the largest eigenvalue is plotted on the first axis, and the one with the second largest on the second axis.</p>
+<p>PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenan analysis: each of the resulting axes is an eigen vector associated with an eigen value, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue. When plotting the ordination result in an x/y scatterplot, the axis with the largest eigenvalue is plotted on the first axis, and the one with the second largest on the second axis.</p>
 <p>NMDS attempts to represent the pairwise dissimilarity between objects in a low-dimensional space. Can use any dissimilarity coefficient or distance measure. NMDS is a rank-based approach based on an iterative algorithm. While information about the magnitude of distances is lost, rank-based methods are generally more robust to data which do not have an identifiable distribution. NMDS routines often begin by random placement of data objects in ordination space. The algorithm then begins to refine this placement by an iterative process, attempting to find an ordination in which ordinated object distances closely match the order of object dissimilarities in the original distance matrix. The stress value reflects how well the ordination summarizes the observed distances among the samples.</p>
 <h4 id="detrended-correspondence-analysis-dca">Detrended correspondence analysis (DCA)</h4>
 <p><code>Implicit and Unconstrained (exploratory)</code></p>

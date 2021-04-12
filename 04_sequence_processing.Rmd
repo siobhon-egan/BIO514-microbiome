@@ -147,7 +147,7 @@ qiime tools export \
 
 Assign taxonomy to denoised sequences using a pre-trained naive bayes classifier and the q2-feature-classifier plugin. Details on how to create a classifier are available [here](https://github.com/siobhon-egan/qiime2_analysis/blob/master/2.classifiers.md). 
 
-I am using a pre-training classifer for the 16S V1-2 with reference a SILVA database version 138.1.
+I am using a pre-training classifier for the 16S V1-2 with reference a SILVA database version 138.1.
 
 Note that taxonomic classifiers perform best when they are trained based on your specific sample preparation and sequencing parameters, including the primers that were used for amplification and the length of your sequence reads.
 

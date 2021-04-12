@@ -69,7 +69,7 @@ nreads
 ```
 
 **Read density plot**     
-Useful for QC purposes. This will show you the distirbution of sequencing depth among samples. Ideally you want an even number of reads per sample. If you see lots of variation then library preparation needs to be optimised and you will need to perform more thorough data cleaning (i.e. rarefy reads - but this is not ideal.     
+Useful for QC purposes. This will show you the distribution of sequencing depth among samples. Ideally you want an even number of reads per sample. If you see lots of variation then library preparation needs to be optimised and you will need to perform more thorough data cleaning (i.e. rarefy reads - but this is not ideal.     
 Ref: McMurdie PJ, Holmes S. Waste not, want not: why rarefying microbiome data is inadmissible. PLoS Comput Biol. 2014 3;10(4):e1003531. doi: [https://doi.org/10.1371/journal.pcbi.1003531](10.1371/journal.pcbi.1003531).
 
 ```{r}
@@ -142,7 +142,7 @@ alphadiv_wp
 ```
 
 Save your figures directly from R for bonus points on quality data reproducibility!
-This line with save your combined alpha diversity plots into a direcoty called *plots/*
+This line with save your combined alpha diversity plots into a directory called *plots/*
 ```
 ggsave("alphadiv_withpvalues.pdf", plot = alphadiv_wp, path = "plots", width = 30, height = 30, units = "cm")
 ```
@@ -188,7 +188,7 @@ grp_abund <- get_group_abundances(ps_M,
 
 
 mean.plot.phy <- grp_abund %>% # input data
-  ggplot(aes(x= reorder(OTUID, mean_abundance), # reroder based on mean abundance
+  ggplot(aes(x= reorder(OTUID, mean_abundance), # reorder based on mean abundance
              y= mean_abundance,
              fill=Group)) + # x and y axis
   geom_bar(stat = "identity",
@@ -213,7 +213,7 @@ grp_abund <- get_group_abundances(ps_M,
 
 
 mean.plot.ord <- grp_abund %>% # input data
-  ggplot(aes(x= reorder(OTUID, mean_abundance), # reroder based on mean abundance
+  ggplot(aes(x= reorder(OTUID, mean_abundance), # reorder based on mean abundance
              y= mean_abundance,
              fill=Group)) + # x and y axis 
   geom_bar(stat = "identity",
@@ -228,7 +228,7 @@ mean.plot.ord
 
 **Composition barplot**
 
-To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregare taxa at family level).
+To quickly visualize comparison in taxa between make a relative abundance barplot of taxa between sample group (aggregate taxa at family level).
 
 
 ```{r}
@@ -357,12 +357,12 @@ There are many options for ordination. Broadly they can be broken into:
     - Redundancy Analysis (RDA) using Euclidean distance
     - Canonical Correspondance Analysis (CCA) using Pearson chi-squared
 3. Explicit and Unconstrained (exploratory)
-    - Principal Coordinates Analysis (PcoA)	
+    - Principal Coordinates Analysis (PCoA)	
     - non-metric Multidimensional Scaling (nMDS)
     - Choose your own distance measure
-          - Bray-Curtis - takes into account abundance (in this case abunance is the number of reads)
+          - Bray-Curtis - takes into account abundance (in this case abundance is the number of reads)
           - Pearson chi-squares - statistical test on randomness of differences
-          - Jaccard - presence/abense
+          - Jaccard - presence/absence
           - Chord
           - UniFrac, which incorporates phylogeny. 
           - *note*: if you set the distance metric to Euclidean then PCoA becomes Principal Components Analysis.
@@ -370,7 +370,7 @@ There are many options for ordination. Broadly they can be broken into:
 
 **Some extra explanatory notes on PCoA and nMDS**
 
-PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenan alysis: each of the resulting axes is an eigen vector associated with an eigen value, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue. When plotting the ordination result in an x/y scatterplot, the axis with the largest eigenvalue is plotted on the first axis, and the one with the second largest on the second axis.
+PCoA is very similar to PCA, RDA, CA, and CCA in that they are all based on eigenan analysis: each of the resulting axes is an eigen vector associated with an eigen value, and all axes are orthogonal to each other. This means that all axes reveal unique information about the inertia in the data, and exactly how much inertia is indicated by the eigenvalue. When plotting the ordination result in an x/y scatterplot, the axis with the largest eigenvalue is plotted on the first axis, and the one with the second largest on the second axis.
 
 NMDS attempts to represent the pairwise dissimilarity between objects in a low-dimensional space. Can use any dissimilarity coefficient or distance measure. NMDS is a rank-based approach based on an iterative algorithm. While information about the magnitude of distances is lost, rank-based methods are generally more robust to data which do not have an identifiable distribution. NMDS routines often begin by random placement of data objects in ordination space. The algorithm then begins to refine this placement by an iterative process, attempting to find an ordination in which ordinated object distances closely match the order of object dissimilarities in the original distance matrix. The stress value reflects how well the ordination summarizes the observed distances among the samples.
 
