@@ -45,7 +45,9 @@ Week 2 - [Microbiome bioinformatics](http://siobhonlegan.com/BIO514-microbiome/0
 - Ref: Liu, YX., Qin, Y., Chen, T. et al. A practical guide to amplicon and metagenomic analysis of microbiome data. Protein Cell (2020). [10.1007/s13238-020-00724-8](https://doi.org/10.1007/s13238-020-00724-8)
 
 
-## Links - learning R and misc. coding related tools
+## Links
+
+**learning R and misc. coding related tools**
 
 - [Software carpentry](https://software-carpentry.org/lessons/)
     - Try the [R for Reproducible Scientific Analysis](http://swcarpentry.github.io/r-novice-gapminder) lesson
@@ -59,6 +61,18 @@ Week 2 - [Microbiome bioinformatics](http://siobhonlegan.com/BIO514-microbiome/0
 For more detail on RStudio and lots of links see my research website [here](http://siobhonlegan.com/research_site/rstudio/).
 
 The [bioinformatics](02_bioinformatics.html) page also has extra links related to RStudio and microbiome analysis.
+
+**Workshops/groups for learning**
+
+Keep an eye on the Rezbaz website [here](https://resbaz.github.io/resbaz2021/perth/). It was cancelled in 2020 but might be coming back this year.
+
+[AMSI BioInfoSummer](https://bis.amsi.org.au/) is a week-long workshop/conference that is tailored around bioinformatics - mainly genomics but also other 'omic data as well. As with all things it went virtual in 2020 so likely will be in 2021.
+
+[Biocommons](https://www.biocommons.org.au/training) is a group that brings together bioinformaticians. They help provide and facilitate workshops and training relating to biological data and informatics.
+
+The BioCommons is committed to enabling this critical workforce transition, by building upon training activities that we developed as part of the EMBL-ABR training programme:
+
+See also Murdoch uni workshops and drop in sessions available [here](https://www.murdoch.edu.au/mymurdoch/support-advice/learning-study/workshops-sessions).
 
 ## Learning outcomes
 
