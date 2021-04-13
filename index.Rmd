@@ -31,7 +31,7 @@ Week 2 - [Microbiome bioinformatics](http://siobhonlegan.com/BIO514-microbiome/0
 
 -----
 
-## References
+## References for microbiome
 
 
 - Johnson, J.S., Spakowicz, D.J., Hong, BY. et al. Evaluation of 16S rRNA gene sequencing for species and strain-level microbiome analysis. Nat Commun 10, 5029 (2019). doi: [10.1038/s41467-019-13036-1](https://doi.org/10.1038/s41467-019-13036-1)
@@ -44,6 +44,21 @@ Week 2 - [Microbiome bioinformatics](http://siobhonlegan.com/BIO514-microbiome/0
 - Lepage P, Leclerc MC, Joossens M, et al. A metagenomic insight into our gut's microbiome. Gut 2013;62:146-158. doi: [10.1136/gutjnl-2011-301805](http://dx.doi.org/10.1136/gutjnl-2011-301805)
 - Ref: Liu, YX., Qin, Y., Chen, T. et al. A practical guide to amplicon and metagenomic analysis of microbiome data. Protein Cell (2020). [10.1007/s13238-020-00724-8](https://doi.org/10.1007/s13238-020-00724-8)
 
+
+## Links - learning R and misc. coding related tools
+
+- [Software carpentry](https://software-carpentry.org/lessons/)
+    - Try the [R for Reproducible Scientific Analysis](http://swcarpentry.github.io/r-novice-gapminder) lesson
+    - If you'd like to learn linux for bioinformatics analysis try the [The Unix Shell](http://swcarpentry.github.io/shell-novice) lesson
+- [Data carpentry](https://datacarpentry.org/)
+- [R for reproducible research](https://annakrystalli.me/rrresearch/)
+- [workflowr](https://jdblischak.github.io/workflowr/)
+- [Reproducible research data and project management in R](https://annakrystalli.me/rrresearchACCE20/)
+- [R for Data Science by Hadley Wickham and Garrett Grolemund](https://r4ds.had.co.nz/) and [here](http://www.rforresearch.com/r-for-research-the-course)
+
+For more detail on RStudio and lots of links see my research website [here](http://siobhonlegan.com/research_site/rstudio/).
+
+The [bioinformatics](02_bioinformatics.html) page also has extra links related to RStudio and microbiome analysis.
 
 ## Learning outcomes
 

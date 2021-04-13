@@ -2134,11 +2134,9 @@ Workshop
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>echo <span class='op'>=</span> <span class='cn'>TRUE</span>, warning <span class='op'>=</span> <span class='cn'>FALSE</span>, fig.align <span class='op'>=</span> <span class='st'>"center"</span><span class='op'>)</span>
 
-<span class='va'>pkgs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"tidyverse"</span>, <span class='st'>"santaR"</span>, <span class='st'>"phyloseq"</span>, <span class='st'>"ggpubr"</span>, <span class='st'>"ggplot2"</span>,
-          <span class='st'>"vegan"</span>, <span class='st'>"DESeq2"</span>, <span class='st'>"mixOmics"</span>, <span class='st'>"Hmisc"</span>, <span class='st'>"igraph"</span>, <span class='st'>"ppcor"</span>, 
-          <span class='st'>"reshape2"</span>, <span class='st'>"plotly"</span>, <span class='st'>"microbiomeutilities"</span>, <span class='st'>"ampvis2"</span>,
-          <span class='st'>"MicrobiotaProcess"</span>, <span class='st'>"microbiome"</span>, <span class='st'>"DirichletMultinomial"</span>,
-          <span class='st'>"magrittr"</span><span class='op'>)</span>
+<span class='va'>pkgs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"tidyverse"</span>, <span class='st'>"phyloseq"</span>, <span class='st'>"ggpubr"</span>, <span class='st'>"ggplot2"</span>,
+          <span class='st'>"vegan"</span>, <span class='st'>"reshape2"</span>, <span class='st'>"plotly"</span>, <span class='st'>"microbiomeutilities"</span>, <span class='st'>"ampvis2"</span>,
+          <span class='st'>"MicrobiotaProcess"</span>, <span class='st'>"microbiome"</span>, <span class='st'>"DirichletMultinomial"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>pkgs</span>, <span class='va'>require</span>, character.only <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='fu'>theme_set</span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>

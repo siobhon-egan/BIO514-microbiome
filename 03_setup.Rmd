@@ -4,7 +4,7 @@ description: |
   Bioinformatics - set up
 site:
   distill::distill_article:
-    toc: true
+    toc: yes
     toc_depth: 2
 ---
 
@@ -16,15 +16,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **REQUIRED** - We will be using RStudio to analyse the data set. It is recommend you have the following installed: [*RStudio version 1.4*](https://rstudio.com/products/rstudio/download/) or later and [*R version 4.0*](https://www.r-project.org/) or later. Further details on getting started in RStudio [here](http://siobhonlegan.com/research_site/rstudio/).
 
-
 **Optional** (*not needed for today's workshop*) - We will not be doing the sequence pre-processing steps today but if you did want to do this you will need to download [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) and [QIIME2](https://qiime2.org/).
 
 ## Download data
 
-1. **Raw Sequence** (*optional*)
+1.  **Raw Sequence** (*optional*)
 
-Raw amplicon 16S sequence data from West et al. (2020) *Gut* 69, 1452-1459. doi: [10.1136/gutjnl-2019-319620](http://dx.doi.org/10.1136/gutjnl-2019-319620).
-Download raw data from NCBI Sequence Read Archive. Project number `PRJNA493625` from https://sra-explorer.info/.
+Raw amplicon 16S sequence data from West et al. (2020) *Gut* 69, 1452-1459. doi: [10.1136/gutjnl-2019-319620](http://dx.doi.org/10.1136/gutjnl-2019-319620). Download raw data from NCBI Sequence Read Archive. Project number `PRJNA493625` from <https://sra-explorer.info/>.
 
 Rename so `fastq.gz` files in format `SAMPLEID_L001_R1_001.fastq.gz` (forward) or `SAMPLEID_L001_R2_001.fastq.gz` (reverse).
 
@@ -32,16 +30,53 @@ You will not be required to download this for today's tutorial but if you wanted
 
 Pre-processed QIIME2 sequence data as outlined in [sequence processing](04_sequence_processing.html) is available for download on [FigShare link](https://figshare.com/s/0c459524e59953bf2585). Download files and you can view them using [QIIME2 view](https://view.qiime2.org/).
 
-2. **RData** (*REQUIRED*)
+2.  **RData** (*REQUIRED*)
 
 The easiest way to follow along with this tutorial is to download this GitHub repository using either option **1** or **2** below:
 
-1. Go to https://github.com/siobhon-egan/BIO514-microbiome and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
+1.  Go to <https://github.com/siobhon-egan/BIO514-microbiome> and click on the green **Code** button. Select **Download ZIP**, open/unzip the file. Open the `.Rmd` files in RStudio you will be able to follow along for the data analysis.
 
-
-2. Use terminal and clone the GitHub repo.
+2.  Use terminal and clone the GitHub repo.
 
 ```
 git clone https://github.com/siobhon-egan/BIO514-microbiome.git
 ```
 
+## Install R packages
+
+You should only need to do this once to install required libraries.
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+# Phyloseq
+BiocManager::install("phyloseq")
+# Tidyverse
+install.packages("tidyverse")
+# Install microbiome
+BiocManager::install("microbiome")
+# Install microbiome utilities
+install.packages("devtools")
+devtools::install_github("microsud/microbiomeutilities")
+# Install DirichletMultinomial
+BiocManager::install("DirichletMultinomial")
+# Install MicrobiotaProcess
+BiocManager::install("MicrobiotaProcess")
+# Install ampvis2
+install.packages("remotes")
+remotes::install_github("MadsAlbertsen/ampvis2")
+# Install vegan
+install.packages("vegan")
+# Install tidyverse
+install.packages("tidyverse")
+# Install ggpubr
+install.packages("ggpubr")
+# R color brewer
+install.packages("RColorBrewer")
+# Install reshape2
+install.packages("reshape2")
+# Install plotly
+install.packages("plotly")
+```
+
+Note I have not included packages that relating to "knitting" the document here. Everything should be executable within the R markdown files by running the code chunks.

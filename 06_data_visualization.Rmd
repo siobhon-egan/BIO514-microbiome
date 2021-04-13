@@ -17,11 +17,9 @@ Load and/or install required R packages.
 
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.align = "center")
 
-pkgs <- c("tidyverse", "santaR", "phyloseq", "ggpubr", "ggplot2",
-          "vegan", "DESeq2", "mixOmics", "Hmisc", "igraph", "ppcor", 
-          "reshape2", "plotly", "microbiomeutilities", "ampvis2",
-          "MicrobiotaProcess", "microbiome", "DirichletMultinomial",
-          "magrittr")
+pkgs <- c("tidyverse", "phyloseq", "ggpubr", "ggplot2",
+          "vegan", "reshape2", "plotly", "microbiomeutilities", "ampvis2",
+          "MicrobiotaProcess", "microbiome", "DirichletMultinomial")
 lapply(pkgs, require, character.only = TRUE)
 
 theme_set(theme_bw())

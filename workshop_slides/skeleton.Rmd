@@ -51,8 +51,8 @@ Today we will be doing through some microbiome bioinformatics.
 
 Workshop notes and data available:
 
-GitHub code repository [`r icon::fa("github")` `siobhon-egan/BIO514`](http://github.com/siobhon-egan/BIO514-microbiome)          
-Website with information & tutorials [`r icon::fa("link")` `siobhonlegan.com/BIO514`](http://siobhonlegan.com/BIO514-microbiome)
+GitHub code repository `r icon::fa("github")` [`siobhon-egan/BIO514-microbiome`](http://github.com/siobhon-egan/BIO514-microbiome)          
+Website with information & tutorials `r icon::fa("link")` [`siobhonlegan.com/BIO514-microbiome`](http://siobhonlegan.com/BIO514-microbiome)
 
 **Workflow**
 

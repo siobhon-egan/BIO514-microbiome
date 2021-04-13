@@ -2,10 +2,11 @@
 title: "BIO514"
 description: |
   Wet lab
-site:
+output:
   distill::distill_article:
-    toc: yes
-    toc_depth: 2
+    toc: true
+    toc_depth: 3
+    toc_float: TRUE
 ---
 
 `Date: 30th March 2021`
