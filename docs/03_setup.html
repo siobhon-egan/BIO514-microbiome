@@ -2128,6 +2128,10 @@ Workshop
 <pre><code>git clone https://github.com/siobhon-egan/BIO514-microbiome.git</code></pre>
 <h2 id="install-r-packages">Install R packages</h2>
 <p>You should only need to do this once to install required libraries.</p>
+<p>I recommend you run this bit of code line by line. I.e. copy and paste one line of code directly in to the console and press enter.<br />
+For some reason running the whole script at once doesn’t seem to be working.<br />
+Also the order of installing the packages is important, please sick to this order.</p>
+<p>Remember it assumes you have R version 4.0 and RStudio version 1.4.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Phyloseq</span></span>

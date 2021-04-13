@@ -74,7 +74,7 @@ I don't consider myself to be a primarily a "coder". My scientific background an
 
 My advice is to think of the world of coding as someone learning microsoft office for the first time. 
 
-1. .purple[You don not have to be an expert]. Jump in and give it a go. Start with the basics and expand from there.
+1. .purple[You do not have to be an expert]. Jump in and give it a go. Start with the basics and expand from there.
 2. .purple[You'll pick up what you need to know as you go along]. Similar to above don't expect to be a professional at the start. Things will be messy but do whatever works for you!
 3. .purple[There are lots of ways to do the same thing]. Just because what is on the person next to you screen doesn't mean what you have (or what they have is wrong).
 4. .purple[Google is your friend]. First thing is just copy and paste error message into google. Forums like stack overflow will likely have your answer.
@@ -527,7 +527,7 @@ Trees can be encoded in a number of different formats, all of which must represe
 
 **Spreadsheets containing data**
 
-Open in excel/goggle sheets or text editor
+Open in excel/google sheets or text editor
 
 - tab-separated values (TSV) 
 - comma-separated values (CSV) 
